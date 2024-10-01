@@ -184,7 +184,7 @@ const DestinationDetailsPage = () => {
         {destination.reviews.map((review, index) => (
           <div key={index} className="mb-4 p-4 border-b border-gray-300">
             <p className="font-semibold text-lg">{review.name}</p>
-            <p className="text-gray-600">"{review.comment}"</p>
+            <p className="text-gray-600">{review.comment}</p>
           </div>
         ))}
       </div>

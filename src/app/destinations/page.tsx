@@ -6,7 +6,7 @@ const DestinationsPage = () => {
       title: "New York City",
       imgSrc:
         "https://travio.smartdemowp.com/wp-content/uploads/2021/02/place-1.jpg",
-      link: "http://localhost:3000/destinations/1",
+      link: "destinations/1",
       alt: "New York City",
       featured: true,
     },
@@ -14,21 +14,21 @@ const DestinationsPage = () => {
       title: "Mont Blanc",
       imgSrc:
         "https://travio.smartdemowp.com/wp-content/uploads/2021/02/place-5.jpg",
-      link: "http://localhost:3000/destinations/1",
+      link: "destinations/1",
       alt: "Mont Blanc",
     },
     {
       title: "African Park",
       imgSrc:
         "https://travio.smartdemowp.com/wp-content/uploads/2021/02/place-2.jpg",
-      link: "http://localhost:3000/destinations/1",
+      link: "destinations/1",
       alt: "African Park",
     },
     {
       title: "Vietnam",
       imgSrc:
         "https://travio.smartdemowp.com/wp-content/uploads/2021/02/place-3.jpg",
-      link: "http://localhost:3000/destinations/1",
+      link: "destinations/1",
       alt: "Vietnam",
       featured: true,
     },
@@ -36,21 +36,21 @@ const DestinationsPage = () => {
       title: "Norway Lake",
       imgSrc:
         "https://travio.smartdemowp.com/wp-content/uploads/2021/02/place-13.jpg",
-      link: "http://localhost:3000/destinations/1",
+      link: "destinations/1",
       alt: "Norway Lake",
     },
     {
       title: "Netherland",
       imgSrc:
         "https://travio.smartdemowp.com/wp-content/uploads/2021/02/place-14.jpg",
-      link: "http://localhost:3000/destinations/1",
+      link: "destinations/1",
       alt: "Netherland",
     },
     {
       title: "Costa Rica",
       imgSrc:
         "https://travio.smartdemowp.com/wp-content/uploads/2021/02/place-10.jpg",
-      link: "http://localhost:3000/destinations/1",
+      link: "destinations/1",
       alt: "Costa Rica",
     },
   ];

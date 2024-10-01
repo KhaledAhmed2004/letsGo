@@ -75,7 +75,7 @@ const ContactUsPage = () => {
             </h3>
             <p className="text-gray-700 mb-6">
               Whether you have a question, feedback, or just want to say hello,
-              feel free to reach out. We're always here to assist you and make
+              feel free to reach out. We are always here to assist you and make
               your experience with us even better.
             </p>
             <div className="mt-8 flex space-x-6">
@@ -135,7 +135,7 @@ const ContactUsPage = () => {
             <div className="relative mb-6">
               <textarea
                 placeholder="Your Message"
-                rows="6"
+                rows={6}
                 className="border border-gray-300 w-full p-4 rounded-lg focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-500 outline-none transition-all duration-300"
               ></textarea>
               <span className="absolute top-4 right-4 text-blue-500">

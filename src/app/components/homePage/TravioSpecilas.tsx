@@ -113,7 +113,7 @@ const TravioSpecials = () => {
               Reliable Travel Assistance
             </h4>
             <p className="text-gray-600 mt-2 group-hover:text-gray-200">
-              We're here to assist you at every step of your journey.
+              We are here to assist you at every step of your journey.
             </p>
           </div>
         </div>
