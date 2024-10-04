@@ -26,7 +26,7 @@ const Navbar = () => {
   return (
     <nav
       className={
-        "w-full fixed z-50 top-0 transition-all duration-300  dark:bg-gray-800 dark:text-white bg-white text-black shadow-md"
+        "w-full fixed z-[1000] top-0 transition-all duration-300  dark:bg-gray-800 dark:text-white bg-white text-black shadow-md"
       }
     >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -48,6 +48,9 @@ const Navbar = () => {
           <Link href="/tour-list" className="hover:text-blue-600">
             Tour List
           </Link>
+          <Link href="/hotel-booking" className="hover:text-blue-600">
+            Room
+          </Link>
           <Link href="/blog" className="hover:text-blue-600">
             Blog
           </Link>
@@ -68,7 +71,7 @@ const Navbar = () => {
           </div>
 
           {/* Book Tour Button */}
-          <Link href="/book-tour">
+          <Link href="/tour-list">
             <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 dark:bg-red-400 dark:hover:bg-red-500">
               Book Tour
             </button>

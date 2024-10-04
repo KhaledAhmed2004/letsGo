@@ -112,6 +112,7 @@
 // export default DestinationsPage;
 
 import Image from "next/image";
+import Link from "next/link";
 
 const DestinationsPage = () => {
   const destinations = [
@@ -209,12 +210,12 @@ const DestinationsPage = () => {
                       {title}
                     </a>
                   </h3>
-                  <a
+                  <Link
                     href={link}
                     className="mt-2 inline-block px-4 py-2 text-sm text-white bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-600 rounded transition-colors duration-300"
                   >
                     Learn More
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

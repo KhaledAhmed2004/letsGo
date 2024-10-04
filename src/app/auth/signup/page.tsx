@@ -34,7 +34,7 @@ const SignUpPage: React.FC = () => {
       await new Promise((resolve) => setTimeout(resolve, 2000)); // Fake delay
       toast.success("Sign Up Successful!");
       router.push("/dashboard"); // Navigate to dashboard
-    } catch (error) {
+    } catch {
       toast.error("Sign Up Failed. Please try again.");
     } finally {
       setLoading(false);

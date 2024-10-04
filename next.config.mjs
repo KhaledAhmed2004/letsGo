@@ -5,7 +5,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["travio.smartdemowp.com"],
+    domains: ["travio.smartdemowp.com", "source.unsplash.com"],
   },
 };
 
