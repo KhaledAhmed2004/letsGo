@@ -57,6 +57,9 @@ const Navbar = () => {
           <Link href="/contact" className="hover:text-blue-600">
             Contact
           </Link>
+          <Link href="/package-management" className="hover:text-blue-600">
+            Dashboard
+          </Link>
 
           {/* Search Field */}
           <div className="relative">

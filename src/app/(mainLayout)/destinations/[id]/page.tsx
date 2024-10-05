@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
-import mohamayaImg from "../../../assets/images/Destinations/Mohamaya.jpg";
-import VisitablePlaces2 from "../../../assets/images/Destinations/OIP.jpeg";
+import VisitablePlaces2 from "../../../../assets/images/Destinations/OIP.jpeg";
+import mohamayaImg from "../../../../assets/images/Destinations/Mohamaya.jpg";
 
 const DestinationDetailsPage = () => {
   const destination = {
