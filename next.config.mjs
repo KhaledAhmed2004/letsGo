@@ -1,11 +1,13 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {};
-
-// export default nextConfig;
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   images: {
-    domains: ["travio.smartdemowp.com", "source.unsplash.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**", // Allows images from any domain using HTTPS
+      },
+    ],
   },
 };
 

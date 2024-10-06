@@ -1,578 +1,237 @@
-// "use client";
-// import Image from "next/image";
-// import Link from "next/link";
-// import { FormEvent, useState } from "react";
-
-// const toursData = [
-//   {
-//     id: 1,
-//     name: "City Tour",
-//     location: "New York",
-//     price: 50,
-//     category: "City",
-//     duration: 2,
-//     month: "January",
-//   },
-//   {
-//     id: 2,
-//     name: "Mountain Adventure",
-//     location: "Colorado",
-//     price: 120,
-//     category: "Adventure",
-//     duration: 5,
-//     month: "February",
-//   },
-//   {
-//     id: 3,
-//     name: "Beach Escape",
-//     location: "Miami",
-//     price: 80,
-//     category: "Beach",
-//     duration: 3,
-//     month: "March",
-//   },
-//   {
-//     id: 4,
-//     name: "Desert Safari",
-//     location: "Nevada",
-//     price: 200,
-//     category: "Desert",
-//     duration: 4,
-//     month: "April",
-//   },
-//   {
-//     id: 5,
-//     name: "Jungle Trek",
-//     location: "Amazon",
-//     price: 150,
-//     category: "Jungle",
-//     duration: 7,
-//     month: "May",
-//   },
-// ];
-
-// const ToursPage = () => {
-//   const [filteredTours, setFilteredTours] = useState(toursData);
-//   const [search, setSearch] = useState("");
-//   const [location, setLocation] = useState("");
-//   const [month, setMonth] = useState("");
-//   const [category, setCategory] = useState("");
-//   const [maxPrice, setMaxPrice] = useState(1000);
-//   const [duration, setDuration] = useState("");
-//   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
-//   // Handle filter logic
-
-//   const handleFilter = (e: FormEvent) => {
-//     e.preventDefault();
-//     const filtered = toursData.filter(
-//       (tour) =>
-//         tour.name.toLowerCase().includes(search.toLowerCase()) &&
-//         tour.location.toLowerCase().includes(location.toLowerCase()) &&
-//         (month === "" || tour.month === month) &&
-//         (category === "" || tour.category === category) &&
-//         tour.price <= maxPrice &&
-//         (duration === "" || tour.duration <= parseInt(duration)) // Convert duration to number
-//     );
-//     setFilteredTours(filtered);
-//   };
-
-//   return (
-//     <section className="dark:bg-gray-900">
-//       <div className="container mx-auto px-4 py-8 dark:bg-gray-900 dark:text-white">
-//         <h1 className="text-4xl font-bold mb-6">Tours List</h1>
-//         {/* Layout for Sidebar and Tour List */}
-//         <div className="flex flex-col md:flex-row gap-4">
-//           {/* Mobile Drawer Button */}
-//           <button
-//             className="md:hidden bg-blue-500 dark:bg-blue-600 text-white py-2 px-4 rounded mb-4"
-//             onClick={() => setIsDrawerOpen(true)}
-//           >
-//             Open Filters
-//           </button>
-//           {/* Sidebar for Filters */}
-//           <div
-//             className={`${
-//               isDrawerOpen ? "translate-x-0" : "-translate-x-full"
-//             } md:w-1/4 transition-transform duration-300 fixed inset-0 z-50 bg-gray-100 dark:bg-gray-800 p-4 md:relative md:translate-x-0`}
-//           >
-//             <button
-//               className="absolute top-4 right-4 text-black dark:text-white"
-//               onClick={() => setIsDrawerOpen(false)}
-//             >
-//               &times;
-//             </button>
-//             <form onSubmit={handleFilter}>
-//               <h2 className="text-2xl font-bold mb-4">Filter Tours</h2>
-
-//               {/* Search by Tour Name */}
-//               <div className="mb-4">
-//                 <label
-//                   className="block text-sm font-medium mb-2"
-//                   htmlFor="search"
-//                 >
-//                   Search
-//                 </label>
-//                 <input
-//                   type="text"
-//                   id="search"
-//                   placeholder="Search by Tour Name"
-//                   value={search}
-//                   onChange={(e) => setSearch(e.target.value)}
-//                   className="p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600"
-//                 />
-//               </div>
-
-//               {/* Location Filter */}
-//               <div className="mb-4">
-//                 <label
-//                   className="block text-sm font-medium mb-2"
-//                   htmlFor="location"
-//                 >
-//                   Location
-//                 </label>
-//                 <input
-//                   type="text"
-//                   id="location"
-//                   placeholder="Location"
-//                   value={location}
-//                   onChange={(e) => setLocation(e.target.value)}
-//                   className="p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600"
-//                 />
-//               </div>
-
-//               {/* Month Filter */}
-//               <div className="mb-4">
-//                 <label
-//                   className="block text-sm font-medium mb-2"
-//                   htmlFor="month"
-//                 >
-//                   Select Month
-//                 </label>
-//                 <select
-//                   id="month"
-//                   value={month}
-//                   onChange={(e) => setMonth(e.target.value)}
-//                   className="p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600"
-//                 >
-//                   <option value="">All Months</option>
-//                   <option value="January">January</option>
-//                   <option value="February">February</option>
-//                   <option value="March">March</option>
-//                   <option value="April">April</option>
-//                   <option value="May">May</option>
-//                 </select>
-//               </div>
-
-//               {/* Category Filter */}
-//               <div className="mb-4">
-//                 <label
-//                   className="block text-sm font-medium mb-2"
-//                   htmlFor="category"
-//                 >
-//                   Select Category
-//                 </label>
-//                 <select
-//                   id="category"
-//                   value={category}
-//                   onChange={(e) => setCategory(e.target.value)}
-//                   className="p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600"
-//                 >
-//                   <option value="">All Categories</option>
-//                   <option value="City">City</option>
-//                   <option value="Adventure">Adventure</option>
-//                   <option value="Beach">Beach</option>
-//                   <option value="Desert">Desert</option>
-//                   <option value="Jungle">Jungle</option>
-//                 </select>
-//               </div>
-
-//               {/* Max Price Filter */}
-//               {/* Max Price Filter */}
-//               <div className="mb-4">
-//                 <label
-//                   className="block text-sm font-medium mb-2"
-//                   htmlFor="maxPrice"
-//                 >
-//                   Max Price
-//                 </label>
-//                 <input
-//                   type="number"
-//                   id="maxPrice"
-//                   placeholder="Max Price"
-//                   value={maxPrice}
-//                   onChange={(e) => setMaxPrice(Number(e.target.value))} // Convert to number
-//                   className="p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600"
-//                 />
-//               </div>
-
-//               {/* Duration Filter */}
-//               <div className="mb-4">
-//                 <label
-//                   className="block text-sm font-medium mb-2"
-//                   htmlFor="duration"
-//                 >
-//                   Max Duration (Days)
-//                 </label>
-//                 <input
-//                   type="number"
-//                   id="duration"
-//                   placeholder="Max Duration"
-//                   value={duration}
-//                   onChange={(e) => setDuration(Number(e.target.value))} // Convert to number
-//                   className="p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600"
-//                 />
-//               </div>
-
-//               {/* Duration Filter */}
-//               <div className="mb-4">
-//                 <label
-//                   className="block text-sm font-medium mb-2"
-//                   htmlFor="duration"
-//                 >
-//                   Max Duration (Days)
-//                 </label>
-//                 <input
-//                   type="number"
-//                   id="duration"
-//                   placeholder="Max Duration"
-//                   value={duration}
-//                   onChange={(e) => setDuration(e.target.value)}
-//                   className="p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600"
-//                 />
-//               </div>
-
-//               <button className="bg-blue-500 dark:bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-600 dark:hover:bg-blue-700 w-full transition duration-300">
-//                 Apply Filters
-//               </button>
-//             </form>
-//           </div>
-
-//           {/* Display Tour Cards */}
-//           <div className="w-full md:w-3/4">
-//             {filteredTours.length > 0 ? (
-//               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-//                 {filteredTours.map((tour) => (
-//                   <div
-//                     key={tour.id}
-//                     className="relative bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 transform hover:scale-105"
-//                   >
-//                     <div className="relative">
-//                       {/* Image with gradient overlay */}
-//                       <div className="relative h-48">
-//                         <Image
-//                           src={`https://source.unsplash.com/featured/?${tour.name}`}
-//                           alt={tour.name}
-//                           layout="fill"
-//                           objectFit="cover"
-//                           className="transition-transform duration-300 transform hover:scale-110"
-//                         />
-//                         <div className="absolute inset-0 bg-gradient-to-t from-black opacity-40"></div>
-//                         {/* Price Badge */}
-//                         <div className="absolute top-2 right-2 bg-blue-500 text-white py-1 px-3 rounded-full">
-//                           ${tour.price}
-//                         </div>
-//                       </div>
-//                     </div>
-
-//                     <div className="p-4 dark:text-white">
-//                       <h3 className="text-xl font-bold mb-2">{tour.name}</h3>
-//                       <p className="text-gray-600 dark:text-gray-300">
-//                         {tour.location}
-//                       </p>
-//                       <p className="text-gray-600 dark:text-gray-300">
-//                         {tour.category} - {tour.duration} days
-//                       </p>
-//                       <div>
-//                         <Link href="tour-list/1">
-//                           <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 dark:bg-red-400 dark:hover:bg-red-500">
-//                             see Detiels
-//                           </button>
-//                         </Link>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 ))}
-//               </div>
-//             ) : (
-//               <p>No tours found</p>
-//             )}
-//           </div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default ToursPage;
 "use client";
-// import Image from "next/image";
-import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
+import { Drawer, Slider, Button, Select } from "antd";
+import { BiSearch } from "react-icons/bi";
+import { RxCross2 } from "react-icons/rx";
+import { LuFilter } from "react-icons/lu";
+import PackageCard from "@/components/modules/PackageCard";
+import { useGetAllPackgeQuery } from "@/redux/features/packge/packgeApi";
 
-// Define the interface for the tour data
-interface Tour {
-  id: number;
-  name: string;
-  location: string;
-  price: number;
-  category: string;
-  duration: number; // Duration in days
-  month: string;
-}
-
-// Declare the tours data with the specified type
-const toursData: Tour[] = [
-  {
-    id: 1,
-    name: "City Tour",
-    location: "New York",
-    price: 50,
-    category: "City",
-    duration: 2,
-    month: "January",
-  },
-  {
-    id: 2,
-    name: "Mountain Adventure",
-    location: "Colorado",
-    price: 120,
-    category: "Adventure",
-    duration: 5,
-    month: "February",
-  },
-  {
-    id: 3,
-    name: "Beach Escape",
-    location: "Miami",
-    price: 80,
-    category: "Beach",
-    duration: 3,
-    month: "March",
-  },
-  {
-    id: 4,
-    name: "Desert Safari",
-    location: "Nevada",
-    price: 200,
-    category: "Desert",
-    duration: 4,
-    month: "April",
-  },
-  {
-    id: 5,
-    name: "Jungle Trek",
-    location: "Amazon",
-    price: 150,
-    category: "Jungle",
-    duration: 7,
-    month: "May",
-  },
+const months = [
+  { value: "", label: "All" },
+  { value: "January", label: "January" },
+  { value: "February", label: "February" },
+  { value: "March", label: "March" },
+  { value: "April", label: "April" },
+  { value: "May", label: "May" },
+  { value: "June", label: "June" },
+  { value: "July", label: "July" },
+  { value: "August", label: "August" },
+  { value: "September", label: "September" },
+  { value: "October", label: "October" },
+  { value: "November", label: "November" },
+  { value: "December", label: "December" },
 ];
+const ProductsPage = () => {
+  // State management for filters
+  const [searchQuery, setSearchQuery] = useState("");
+  const [minPrice, setMinPrice] = useState<number>(0);
+  const [maxPrice, setMaxPrice] = useState<number>(1000);
+  const [sortByOrder, setSortByOrder] = useState<"asc" | "desc">("asc");
+  const [drawerVisible, setDrawerVisible] = useState(false);
+  const [selectedMonth, setSelectedMonth] = useState<string>("");
+  // Fetch products based on filters using the API query
+  const { data: products } = useGetAllPackgeQuery({
+    searchQuery,
+    minPrice,
+    maxPrice,
+    sortByOrder,
+  });
 
-const ToursPage = () => {
-  const [filteredTours, setFilteredTours] = useState<Tour[]>(toursData);
-  const [search, setSearch] = useState("");
-  const [location, setLocation] = useState("");
-  const [month, setMonth] = useState("");
-  const [category, setCategory] = useState("");
-  const [maxPrice, setMaxPrice] = useState(1000);
-  const [duration, setDuration] = useState("");
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  // Function to clear all filters
+  const handleForClear = () => {
+    setSearchQuery("");
+    setMinPrice(0);
+    setMaxPrice(1000);
+    setSortByOrder("asc");
+    setSelectedMonth("");
+  };
 
-  // Handle filter logic
-  const handleFilter = (e: FormEvent) => {
-    e.preventDefault();
-    const filtered = toursData.filter(
-      (tour) =>
-        tour.name.toLowerCase().includes(search.toLowerCase()) &&
-        tour.location.toLowerCase().includes(location.toLowerCase()) &&
-        (month === "" || tour.month === month) &&
-        (category === "" || tour.category === category) &&
-        tour.price <= maxPrice &&
-        (duration === "" || tour.duration <= parseInt(duration))
-    );
-    setFilteredTours(filtered);
+  // Function to close the drawer
+  const closeDrawer = () => {
+    setDrawerVisible(false);
+  };
+
+  // Function to show the drawer
+  const showDrawer = () => {
+    setDrawerVisible(true);
   };
 
   return (
-    <section className="dark:bg-gray-900">
-      <div className="container mx-auto px-4 py-8 dark:bg-gray-900 dark:text-white">
-        <h1 className="text-4xl font-bold mb-6">Tours List</h1>
-        {/* Layout for Sidebar and Tour List */}
-        <div className="flex flex-col md:flex-row gap-4">
-          {/* Mobile Drawer Button */}
-          <button
-            className="md:hidden bg-blue-500 dark:bg-blue-600 text-white py-2 px-4 rounded mb-4"
-            onClick={() => setIsDrawerOpen(true)}
-          >
+    <div className="mt-6 mb-28 px-4 lg:px-20 min-h-screen">
+      <div className="divider font-semibold"></div>
+
+      {/* Filter and Search Section */}
+      <div className="flex flex-col lg:flex-row gap-4 pt-4 px-2 lg:px-0">
+        {/* Filter Drawer Button for small devices */}
+        <div className="lg:hidden my-2">
+          <Button type="primary" onClick={showDrawer}>
+            <LuFilter className="mr-2" />
             Open Filters
-          </button>
-          {/* Sidebar for Filters */}
-          <div
-            className={`${
-              isDrawerOpen ? "translate-x-0" : "-translate-x-full"
-            } md:w-1/4 transition-transform duration-300 fixed inset-0 z-50 bg-gray-100 dark:bg-gray-800 p-4 md:relative md:translate-x-0`}
-          >
-            <button
-              className="absolute top-4 right-4 text-black dark:text-white"
-              onClick={() => setIsDrawerOpen(false)}
-            >
-              &times;
-            </button>
-            <form onSubmit={handleFilter}>
-              <h2 className="text-2xl font-bold mb-4">Filter Tours</h2>
+          </Button>
+        </div>
 
-              {/* Search by Tour Name */}
-              <div className="mb-4">
-                <label
-                  className="block text-sm font-medium mb-2"
-                  htmlFor="search"
-                >
-                  Search
-                </label>
-                <input
-                  type="text"
-                  id="search"
-                  placeholder="Search by Tour Name"
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600"
+        {/* Drawer for Small Devices */}
+        <Drawer
+          title="Filter"
+          placement="left"
+          onClose={() => setDrawerVisible(false)}
+          open={drawerVisible}
+          className="lg:hidden"
+        >
+          {/* Filter Content */}
+          <div className="p-6">
+            <div className="flex justify-between mb-4">
+              <p className="font-semibold text-lg">Filter Products</p>
+              <div className="flex items-center gap-1 text-blue-600 font-medium">
+                <button onClick={handleForClear}>Reset All</button>
+                <RxCross2
+                  className="cursor-pointer"
+                  onClick={() => setDrawerVisible(false)}
                 />
               </div>
+            </div>
 
-              {/* Location Filter */}
-              <div className="mb-4">
-                <label
-                  className="block text-sm font-medium mb-2"
-                  htmlFor="location"
-                >
-                  Location
-                </label>
-                <input
-                  type="text"
-                  id="location"
-                  placeholder="Location"
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                  className="p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600"
-                />
-              </div>
-
-              {/* Month Filter */}
-              <div className="mb-4">
-                <label
-                  className="block text-sm font-medium mb-2"
-                  htmlFor="month"
-                >
-                  Select Month
-                </label>
-                <select
-                  id="month"
-                  value={month}
-                  onChange={(e) => setMonth(e.target.value)}
-                  className="p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600"
-                >
-                  <option value="">All Months</option>
-                  <option value="January">January</option>
-                  <option value="February">February</option>
-                  <option value="March">March</option>
-                  <option value="April">April</option>
-                  <option value="May">May</option>
-                </select>
-              </div>
-
-              {/* Category Filter */}
-              <div className="mb-4">
-                <label
-                  className="block text-sm font-medium mb-2"
-                  htmlFor="category"
-                >
-                  Select Category
-                </label>
-                <select
-                  id="category"
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  className="p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600"
-                >
-                  <option value="">All Categories</option>
-                  <option value="City">City</option>
-                  <option value="Adventure">Adventure</option>
-                  <option value="Beach">Beach</option>
-                  <option value="Desert">Desert</option>
-                  <option value="Jungle">Jungle</option>
-                </select>
-              </div>
-
-              {/* Max Price Filter */}
-              <div className="mb-4">
-                <label
-                  className="block text-sm font-medium mb-2"
-                  htmlFor="maxPrice"
-                >
-                  Max Price
-                </label>
-                <input
-                  type="number"
-                  id="maxPrice"
-                  placeholder="Max Price"
-                  value={maxPrice}
-                  onChange={(e) => setMaxPrice(Number(e.target.value))}
-                  className="p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600"
-                />
-              </div>
-
-              {/* Duration Filter */}
-              <div className="mb-4">
-                <label
-                  className="block text-sm font-medium mb-2"
-                  htmlFor="duration"
-                >
-                  Max Duration (Days)
-                </label>
-                <input
-                  type="number"
-                  id="duration"
-                  placeholder="Max Duration"
-                  value={duration}
-                  onChange={(e) => setDuration(e.target.value)}
-                  className="p-2 border rounded w-full dark:bg-gray-700 dark:border-gray-600"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="bg-blue-500 dark:bg-blue-600 text-white py-2 px-4 rounded"
-              >
-                Apply Filters
+            {/* Search Input */}
+            <div className="relative flex items-center mt-4">
+              <input
+                className="p-3 rounded-lg w-full bg-gray-50 border border-blue-500 outline-none"
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <button className="absolute right-2">
+                <BiSearch className="text-xl text-blue-500" />
               </button>
-            </form>
+            </div>
+
+            {/* Price Range Slider */}
+            <div className="mt-4">
+              <p className="text-sm text-gray-600 font-semibold mb-2">
+                Price Range
+              </p>
+              <Slider
+                range
+                value={[minPrice, maxPrice]}
+                onChange={(value) => {
+                  setMinPrice(value[0]);
+                  setMaxPrice(value[1]);
+                }}
+                className="w-full"
+              />
+            </div>
+
+            {/* Sorting Dropdown */}
+            <div className="mt-6">
+              <p className="text-sm text-gray-600 font-semibold mb-3">
+                Sort By
+              </p>
+              <Select
+                defaultValue={sortByOrder}
+                onChange={(value) => setSortByOrder(value)}
+                className="w-full"
+              >
+                <Select.Option value="asc">Price: Low to High</Select.Option>
+                <Select.Option value="desc">Price: High to Low</Select.Option>
+              </Select>
+            </div>
+          </div>
+        </Drawer>
+
+        {/* Filter Section for larger devices */}
+        <div className="hidden lg:block bg-gray-100 h-fit rounded-lg w-full lg:w-[28%] p-6 shadow-lg">
+          <div className="flex justify-between mb-4">
+            <p className="font-semibold text-lg">Filter Products</p>
+            <div className="flex items-center gap-1 text-blue-600 font-medium">
+              <button onClick={handleForClear}>Reset All</button>
+              <RxCross2 className="cursor-pointer" onClick={closeDrawer} />
+            </div>
           </div>
 
-          {/* Tour Cards List */}
-          <div className="md:w-3/4">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredTours.map((tour) => (
-                <div key={tour.id} className="border rounded shadow-lg p-4">
-                  <h3 className="text-xl font-bold">{tour.name}</h3>
-                  <p>Location: {tour.location}</p>
-                  <p>Price: ${tour.price}</p>
-                  <p>Duration: {tour.duration} days</p>
-                  <Link
-                    href={`tour-list/${tour.id}`}
-                    className="bg-blue-500 dark:bg-blue-600 text-white py-2 px-4 rounded mt-2 inline-block"
-                  >
-                    View Details
-                  </Link>
-                </div>
+          {/* Search Input */}
+          <div className="relative flex items-center mt-4">
+            <input
+              className="p-3 rounded-lg w-full bg-gray-50 border-[1px] border-blue-500 outline-none"
+              type="text"
+              placeholder="Search products..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button className="absolute right-2">
+              <BiSearch className="text-xl text-blue-500" />
+            </button>
+          </div>
+
+          {/* Price Range Slider */}
+          <div className="mt-4">
+            {/* <p className="text-sm text-gray-600 font-semibold mb-2">
+              Price Range
+            </p> */}
+            <p className="text-sm text-gray-600 font-semibold mb-2">
+              Price Range:{" "}
+              <span className="font-bold">
+                ${minPrice} - ${maxPrice}
+              </span>
+            </p>
+            <Slider
+              range
+              value={[minPrice, maxPrice]}
+              onChange={(value) => {
+                setMinPrice(value[0]);
+                setMaxPrice(value[1]);
+              }}
+              className="w-full"
+              min={0}
+              max={1000}
+            />
+          </div>
+
+          {/* Month Filter */}
+          <div className="mt-4">
+            <h3 className="text-sm font-medium mb-2">Month</h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+              {months.map((month) => (
+                <button
+                  key={month.value}
+                  onClick={() => setSelectedMonth(month.value)}
+                  className={`flex items-center justify-center p-2 rounded-lg transition-colors duration-300
+                    ${
+                      selectedMonth === month.value
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-200 text-gray-800 hover:bg-blue-200"
+                    }
+                    dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600`}
+                >
+                  {month.label}
+                </button>
               ))}
             </div>
           </div>
+
+          {/* Sorting Dropdown */}
+          <div className="mt-6">
+            <p className="text-sm text-gray-600 font-semibold mb-3">Sort By</p>
+            <Select
+              defaultValue={sortByOrder}
+              onChange={(value) => setSortByOrder(value)}
+              className="w-full"
+            >
+              <Select.Option value="asc">Price: Low to High</Select.Option>
+              <Select.Option value="desc">Price: High to Low</Select.Option>
+            </Select>
+          </div>
+        </div>
+
+        {/* Product Showcase Section */}
+        <div className="w-full rounded-lg grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-fit lg:w-[72%]">
+          {products?.data.map((tour) => (
+            <PackageCard key={tour._id} tour={tour} />
+          ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default ToursPage;
+export default ProductsPage;
