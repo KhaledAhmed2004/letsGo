@@ -89,7 +89,7 @@ const PackageManagementPage = () => {
   useEffect(() => {
     // Set packages to mock data on component mount
     setPackages(mockPackages);
-  }, []);
+  }, [mockPackages]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

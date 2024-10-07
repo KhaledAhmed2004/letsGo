@@ -1,141 +1,32 @@
-// import React from "react";
-// import { FaCalendarAlt } from "react-icons/fa"; // Importing the calendar icon
-
-// const blogPosts = [
-//   {
-//     id: 1,
-//     title: "Exploring the Beautiful Beaches of Thailand",
-//     image: "https://example.com/images/thailand-beach.jpg",
-//     description:
-//       "Discover the hidden gems and stunning views of Thailand's pristine beaches. Perfect for your next vacation!",
-//     link: "/blog/thailand-beaches",
-//     date: "2021-02-09T09:18:41+00:00",
-//     category: "Lifestyle",
-//   },
-//   // Other blog posts...
-// ];
-
-// const DateDisplay = ({ date }) => {
-//   return (
-//     <span className="flex items-center text-gray-500 text-sm">
-//       <FaCalendarAlt className="mr-1 text-blue-600" />
-//       <time className="entry-date published" dateTime={date}>
-//         {new Date(date).toLocaleDateString("en-US", {
-//           year: "numeric",
-//           month: "long",
-//           day: "numeric",
-//         })}
-//       </time>
-//     </span>
-//   );
-// };
-
-// const TravelBlogPage = () => {
-//   return (
-//     <div className="bg-gray-50 dark:bg-gray-900">
-//       {/* Header Section */}
-//       <header className="bg-gradient-to-r from-blue-500 to-purple-600 py-10 shadow-lg">
-//         <h1 className="text-5xl font-bold text-center text-white drop-shadow-lg">
-//           Travel Blog
-//         </h1>
-//         <p className="text-lg text-center text-gray-200 mt-2">
-//           Discover your next adventure
-//         </p>
-//       </header>
-
-//       {/* Blog Section */}
-//       <main className="max-w-7xl mx-auto p-6">
-//         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-//           {blogPosts.map((post) => (
-//             <div key={post.id} className="news-block-one mb-6">
-//               <div className="inner-box bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl">
-//                 <figure className="image-box">
-//                   <img
-//                     src={post.image}
-//                     alt={post.title}
-//                     className="w-full h-48 object-cover transition duration-300 hover:scale-110"
-//                   />
-//                 </figure>
-//                 <div className="lower-content p-4">
-//                   <div className="category mb-2">
-//                     <span className="text-blue-500 text-sm font-medium">
-//                       {post.category}
-//                     </span>
-//                   </div>
-//                   <h3 className="text-xl font-semibold mb-2">
-//                     <a
-//                       href={post.link}
-//                       className="text-gray-800 dark:text-white hover:text-blue-500 transition duration-200"
-//                     >
-//                       {post.title}
-//                     </a>
-//                   </h3>
-//                   <DateDisplay date={post.date} /> {/* Displaying the date */}
-//                   <p className="text-gray-700 dark:text-gray-300 mb-4">
-//                     {post.description}
-//                   </p>
-//                   <div className="btn-box">
-//                     <a
-//                       href={post.link}
-//                       className="theme-btn-two bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300 shadow-md"
-//                     >
-//                       Read More
-//                     </a>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//       </main>
-//     </div>
-//   );
-// };
-
-// export default TravelBlogPage;
+import Image from "next/image";
 import React from "react";
-import { FaCalendarAlt } from "react-icons/fa"; // Importing the calendar icon
+import Marquee from "react-fast-marquee";
+import { FaUser, FaCalendarAlt } from "react-icons/fa";
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "Exploring the Beautiful Beaches of Thailand",
-    image: "https://example.com/images/thailand-beach.jpg",
-    description:
-      "Discover the hidden gems and stunning views of Thailand's pristine beaches. Perfect for your next vacation!",
-    link: "/blog/thailand-beaches",
-    date: "2021-02-09T09:18:41+00:00",
-    category: "Lifestyle",
-  },
-  // Other blog posts...
-];
-
-// Define the type for the DateDisplay component props
-interface DateDisplayProps {
-  date: string; // Expecting date to be a string
+// Define a type for a blog post
+interface BlogPost {
+  _id: string;
+  img: string;
+  title: string;
+  author: string;
+  date: string;
+  description: string;
 }
 
-const DateDisplay: React.FC<DateDisplayProps> = ({ date }) => {
-  return (
-    <span className="flex items-center text-gray-500 text-sm">
-      <FaCalendarAlt className="mr-1 text-blue-600" />
-      <time className="entry-date published" dateTime={date}>
-        {new Date(date).toLocaleDateString("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })}
-      </time>
-    </span>
-  );
-};
+// Define the TravelBlogPage component
+const TravelBlogPage: React.FC = async () => {
+  // const res = await fetch("http://localhost:5000/api/blog");
+  const res = await fetch("https://tour-gide-server.vercel.app/api/blog");
+  const blogPosts = await res.json();
 
-const TravelBlogPage: React.FC = () => {
+  // Assuming blogPosts has a data field that contains an array of blog posts
+  const posts: BlogPost[] = blogPosts?.data;
+
   return (
     <div className="bg-gray-50 dark:bg-gray-900">
       {/* Header Section */}
-      <header className="bg-gradient-to-r from-blue-500 to-purple-600 py-10 shadow-lg">
-        <h1 className="text-5xl font-bold text-center text-white drop-shadow-lg">
+      <header className="bg-gradient-to-r from-blue-600 to-purple-700 py-10 shadow-lg">
+        <h1 className="text-6xl font-bold text-center text-white drop-shadow-lg">
           Travel Blog
         </h1>
         <p className="text-lg text-center text-gray-200 mt-2">
@@ -143,41 +34,56 @@ const TravelBlogPage: React.FC = () => {
         </p>
       </header>
 
+      {/* Marquee Section */}
+      <Marquee className="bg-blue-600 text-white p-4 text-lg">
+        Breaking News: New travel guidelines have been issued. Check out the
+        latest destinations for your next adventure! 🌍✈️
+      </Marquee>
+
       {/* Blog Section */}
       <main className="max-w-7xl mx-auto p-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post) => (
-            <div key={post.id} className="news-block-one mb-6">
-              <div className="inner-box bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-2xl">
+          {posts.map((post) => (
+            <div key={post._id} className="news-block-one mb-6">
+              <div className="inner-box bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-lg">
                 <figure className="image-box">
-                  <img
-                    src={post.image}
+                  <Image
+                    src={post.img}
                     alt={post.title}
+                    width={500}
+                    height={300}
                     className="w-full h-48 object-cover transition duration-300 hover:scale-110"
                   />
                 </figure>
-                <div className="lower-content p-4">
-                  <div className="category mb-2">
-                    <span className="text-blue-500 text-sm font-medium">
-                      {post.category}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">
+                <div className="lower-content p-6">
+                  <h3 className="text-2xl font-semibold mb-2 text-gray-800 dark:text-white line-clamp-2">
                     <a
-                      href={post.link}
-                      className="text-gray-800 dark:text-white hover:text-blue-500 transition duration-200"
+                      href={`#`}
+                      className="hover:text-blue-500 transition duration-200"
                     >
                       {post.title}
                     </a>
                   </h3>
-                  <DateDisplay date={post.date} /> {/* Displaying the date */}
-                  <p className="text-gray-700 dark:text-gray-300 mb-4">
+
+                  {/* Author Section with Icon */}
+                  <div className="flex items-center mb-2 text-gray-700 dark:text-gray-300 text-sm">
+                    <FaUser className="mr-2" /> {/* User icon */}
+                    {post.author || "Unknown Author"}
+                  </div>
+
+                  {/* Date Section with Icon */}
+                  <div className="flex items-center mb-4 text-gray-500 dark:text-gray-400 text-sm">
+                    <FaCalendarAlt className="mr-2" /> {/* Calendar icon */}
+                    {post.date}
+                  </div>
+
+                  <p className="text-gray-700 dark:text-gray-300 mb-4 text-sm line-clamp-3">
                     {post.description}
                   </p>
                   <div className="btn-box">
                     <a
-                      href={post.link}
-                      className="theme-btn-two bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300 shadow-md"
+                      href={`#`}
+                      className="theme-btn-two bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition duration-300 shadow-lg"
                     >
                       Read More
                     </a>

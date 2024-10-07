@@ -3,13 +3,10 @@ import { baseApi } from "../../api/baseApi";
 const destinationsApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getAllDestinations: builder.query({
-      query: (params) => {
-        return {
-          url: "/destinations",
-          method: "GET",
-          params,
-        };
-      },
+      query: () => ({
+        url: "/destinations",
+        method: "GET",
+      }),
       providesTags: ["destinations"],
     }),
   }),

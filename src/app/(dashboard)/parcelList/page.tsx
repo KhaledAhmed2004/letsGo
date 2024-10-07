@@ -61,7 +61,7 @@ const BookingListPage: React.FC = () => {
         ];
         setBookings(mockBookings);
         setLoading(false);
-      } catch (error) {
+      } catch {
         setError("Failed to load bookings");
         setLoading(false);
       }

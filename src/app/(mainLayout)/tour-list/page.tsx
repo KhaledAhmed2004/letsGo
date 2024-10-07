@@ -7,6 +7,26 @@ import { LuFilter } from "react-icons/lu";
 import PackageCard from "@/components/modules/PackageCard";
 import { useGetAllPackgeQuery } from "@/redux/features/packge/packgeApi";
 
+type Tour = {
+  _id: string;
+  img: string;
+  duration: string;
+  departure: string;
+  departureDate: string;
+  departureTime: string;
+  return: string;
+  destination: string;
+  description: string;
+  include: string[];
+  exclude: string[];
+  day1: string[];
+  day2: string[];
+  day3: string[];
+  status: string;
+  price: number;
+  month: string;
+};
+
 const months = [
   { value: "", label: "All" },
   { value: "January", label: "January" },
@@ -23,11 +43,11 @@ const months = [
   { value: "December", label: "December" },
 ];
 
-const ProductsPage = () => {
+const TourList = () => {
   // State management for filters
   const [searchQuery, setSearchQuery] = useState("");
   const [minPrice, setMinPrice] = useState<number>(0);
-  const [maxPrice, setMaxPrice] = useState<number>(1000);
+  const [maxPrice, setMaxPrice] = useState<number>(10000);
   const [sortByOrder, setSortByOrder] = useState<"asc" | "desc">("asc");
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState<string>("");
@@ -45,7 +65,7 @@ const ProductsPage = () => {
   const handleForClear = () => {
     setSearchQuery("");
     setMinPrice(0);
-    setMaxPrice(1000);
+    setMaxPrice(10000);
     setSortByOrder("asc");
     setSelectedMonth("");
   };
@@ -187,7 +207,7 @@ const ProductsPage = () => {
               }}
               className="w-full"
               min={0}
-              max={1000}
+              max={10000}
             />
           </div>
 
@@ -229,7 +249,7 @@ const ProductsPage = () => {
         </div>
         {/* Product Listing Section */}
         <div className="w-full rounded-lg grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 h-fit lg:w-[72%]">
-          {products?.data.map((tour) => (
+          {products?.data.map((tour: Tour) => (
             <PackageCard key={tour._id} tour={tour} />
           ))}
         </div>
@@ -238,4 +258,4 @@ const ProductsPage = () => {
   );
 };
 
-export default ProductsPage;
+export default TourList;

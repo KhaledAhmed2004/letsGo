@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import React, { useState } from "react";
 import { AiOutlineCamera } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -154,7 +155,9 @@ const AddHotelRoom = () => {
           {/* Image Preview and Remove Option */}
           {imagePreview && (
             <div className="relative mt-4">
-              <img
+              <Image
+                width={600} // Specify a fixed width
+                height={400} // Specify a fixed height
                 src={imagePreview}
                 alt="Image Preview"
                 className="object-cover w-full h-48 rounded-lg shadow-md"
