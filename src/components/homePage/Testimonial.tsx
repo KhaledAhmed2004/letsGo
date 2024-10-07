@@ -33,7 +33,7 @@ const Testimonial = () => {
             <span className="font-bold text-sm mt-2 text-center block text-gray-400">
               Traveler
             </span>
-            <div className="testimonial-user-img">
+            <div className="testimonial-user-img flex justify-center items-center mt-2">
               <Image src={TestimonialImg1} alt="" />
             </div>
           </div>
@@ -53,7 +53,7 @@ const Testimonial = () => {
             <span className="font-bold text-sm mt-2 text-center block text-gray-400">
               Traveler
             </span>
-            <div className="testimonial-user-img">
+            <div className="testimonial-user-img flex justify-center items-center mt-2">
               <Image src={TestimonialImg2} alt="" />
             </div>
           </div>
@@ -73,7 +73,7 @@ const Testimonial = () => {
             <span className="font-bold text-sm mt-2 text-center block text-gray-400">
               Traveler
             </span>
-            <div className="testimonial-user-img">
+            <div className="testimonial-user-img flex justify-center items-center mt-2">
               <Image src={TestimonialImg3} alt="" />
             </div>
           </div>
@@ -93,7 +93,7 @@ const Testimonial = () => {
             <span className="font-bold text-sm mt-2 text-center block text-gray-400">
               Traveler
             </span>
-            <div className="testimonial-user-img">
+            <div className="testimonial-user-img flex justify-center items-center mt-2">
               <Image src={TestimonialImg4} alt="" />
             </div>
           </div>
