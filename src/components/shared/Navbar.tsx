@@ -38,7 +38,7 @@ const Navbar = () => {
         {/* Logo */}
         <div>
           <Link href="/" className="text-2xl font-bold dark:text-white">
-            LetsGo
+            Tourist Express
           </Link>
         </div>
 
@@ -52,7 +52,7 @@ const Navbar = () => {
                 : "text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-gray-100"
             }`}
           >
-            Home
+            Hotel
           </Link>
           <Link
             href="/destinations"
@@ -72,7 +72,7 @@ const Navbar = () => {
                 : "text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-gray-100"
             }`}
           >
-            Tour List
+            Packages
           </Link>
           <Link
             href="/hotel-booking"
@@ -82,7 +82,7 @@ const Navbar = () => {
                 : "text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-gray-100"
             }`}
           >
-            Room
+            Hotel
           </Link>
           <Link
             href="/blog"
