@@ -36,7 +36,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       icon: <FaBed />,
     },
     { name: "Blog Post", path: "/dashboard/blog-post", icon: <FaNewspaper /> },
-    { name: "Parcel List", path: "/dashboard/parcelList", icon: <FaBoxOpen /> },
+    { name: "Booking List", path: "/dashboard/booking-list", icon: <FaBoxOpen /> },
   ];
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -77,15 +77,22 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
           <nav className="mt-4">
             {navLinks.map((link) => (
-              <Link key={link.name} href={link.path} passHref>
+              <Link className="" key={link.name} href={link.path} passHref>
                 <button
-                  className={`flex items-center block w-full px-4 py-2 text-left text-gray-700 hover:bg-gray-200 ${
-                    pathname === link.path ? "bg-gray-200 font-bold" : ""
+                  className={`flex items-center  w-full px-4 py-2 text-left text-gray-700 transition-colors duration-300 ease-in-out ${
+                    pathname === link.path
+                      ? "bg-blue-500 text-white font-bold rounded-lg shadow-md"
+                      : "hover:bg-gray-200 rounded-lg"
                   }`}
                   onClick={() => setIsSidebarOpen(false)}
                 >
-                  <span className="mr-2">{link.icon}</span>{" "}
-                  {/* Display the icon */}
+                  <span
+                    className={`mr-2 transition-colors duration-300 ${
+                      pathname === link.path ? "text-white" : "text-gray-700"
+                    }`}
+                  >
+                    {link.icon}
+                  </span>{" "}
                   {link.name}
                 </button>
               </Link>
@@ -109,4 +116,3 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default DashboardLayout;
-
