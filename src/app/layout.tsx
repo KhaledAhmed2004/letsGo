@@ -32,7 +32,7 @@ export default function RootLayout({
       >
         <StoreProvider>
           <Toaster />
-          <div className="mt-[72px]">{children}</div>
+          <div>{children}</div>
         </StoreProvider>
       </body>
     </html>

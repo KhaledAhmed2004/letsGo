@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { HiPencil, HiTrash, HiPlus } from "react-icons/hi"; // Import icons from react-icons
-import { useRouter } from "next/navigation"; // Use next/navigation instead of next/router
+import { HiPencil, HiTrash, HiPlus } from "react-icons/hi";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast"; // Importing react-hot-toast for notifications
 
 interface Package {
   id: string;
@@ -16,16 +17,15 @@ const CustomModal: React.FC<{
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  children: React.ReactNode; // Allows for any JSX content
+  children: React.ReactNode;
 }> = ({ isOpen, onClose, title, children }) => {
-  if (!isOpen) return null; // Don't render if not open
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300">
       <div className="bg-white rounded-lg p-8 max-w-md w-full shadow-2xl transform transition-all duration-300 ease-in-out scale-100 hover:scale-105">
         <h2 className="text-3xl font-bold mb-6 text-blue-700">{title}</h2>
-        {children} {/* Render any children passed to the modal */}
-        {/* Buttons Container with Flexbox */}
+        {children}
         <div className="flex justify-between mt-6">
           <button
             className="w-full mr-2 p-2 bg-gray-300 text-black rounded-lg shadow hover:bg-gray-400 transition duration-200"
@@ -47,7 +47,7 @@ const CustomModal: React.FC<{
 
 // Package Management Page Component
 const PackageManagementPage = () => {
-  const router = useRouter(); // Initialize router for navigation
+  const router = useRouter();
   const [packages, setPackages] = useState<Package[]>([]);
   const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
   const [formData, setFormData] = useState<Package>({
@@ -56,9 +56,8 @@ const PackageManagementPage = () => {
     description: "",
     price: 0,
   });
-  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Sample package data
   const mockPackages: Package[] = [
     {
       id: "1",
@@ -87,9 +86,8 @@ const PackageManagementPage = () => {
   ];
 
   useEffect(() => {
-    // Set packages to mock data on component mount
     setPackages(mockPackages);
-  }, [mockPackages]);
+  }, []);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -100,30 +98,38 @@ const PackageManagementPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (selectedPackage) {
-      // Update existing package
-      setPackages(
-        packages.map((pkg) => (pkg.id === selectedPackage.id ? formData : pkg))
-      );
-    } else {
-      // Add new package
-      const newPackage = { ...formData, id: (packages.length + 1).toString() }; // Generate new ID
-      setPackages([...packages, newPackage]);
+    if (formData.price < 0) {
+      toast.error("Price cannot be negative"); // Error message for negative price
+      return;
     }
-    // Reset form
+
+    if (selectedPackage) {
+      setPackages(
+        packages.map((pkg) =>
+          pkg.id === selectedPackage.id ? { ...formData } : pkg
+        )
+      );
+      toast.success("Package updated successfully!");
+    } else {
+      const newPackage = { ...formData, id: Date.now().toString() }; // Generate new ID using current timestamp
+      setPackages([...packages, newPackage]);
+      toast.success("New package added successfully!");
+    }
+
     setFormData({ id: "", name: "", description: "", price: 0 });
     setSelectedPackage(null);
-    setIsModalOpen(false); // Close modal after submission
+    setIsModalOpen(false);
   };
 
   const handleEdit = (pkg: Package) => {
     setSelectedPackage(pkg);
     setFormData(pkg);
-    setIsModalOpen(true); // Open modal for editing
+    setIsModalOpen(true);
   };
 
   const handleDelete = (id: string) => {
     setPackages(packages.filter((pkg) => pkg.id !== id));
+    toast.success("Package deleted successfully!"); // Success message on delete
   };
 
   return (
@@ -132,8 +138,6 @@ const PackageManagementPage = () => {
         <h1 className="text-3xl font-bold mb-6 text-center text-blue-700">
           Package Management
         </h1>
-
-        {/* Button to Navigate to Add Package Page */}
         <div className="mb-4 text-center">
           <button
             className="flex items-center justify-center px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition duration-200"
@@ -143,7 +147,6 @@ const PackageManagementPage = () => {
           </button>
         </div>
 
-        {/* Packages Table */}
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow">
             <thead>
@@ -183,7 +186,6 @@ const PackageManagementPage = () => {
           </table>
         </div>
 
-        {/* Custom Modal for Editing Package */}
         <CustomModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
@@ -216,12 +218,12 @@ const PackageManagementPage = () => {
               className="block w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
               required
             />
-            {/* <button
+            <button
               type="submit"
               className="w-full p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
             >
               Update Package
-            </button> */}
+            </button>
           </form>
         </CustomModal>
       </div>
