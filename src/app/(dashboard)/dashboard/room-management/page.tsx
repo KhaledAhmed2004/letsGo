@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { HiPencil, HiTrash } from "react-icons/hi";
-import { FaBed, FaCheckCircle, FaTimesCircle } from "react-icons/fa"; // Importing additional icons
+import { FaBed, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 // Sample room data
 const roomData = [
@@ -88,13 +88,19 @@ const RoomManagementPage = () => {
               </td>
               <td className="py-4 px-6">{room.description}</td>
               <td className="py-4 px-6 flex justify-center">
-                <button className="text-blue-500 hover:underline mr-2 flex items-center">
+                <button
+                  className="text-blue-500 hover:bg-blue-100 p-2 rounded-full transition duration-200 ease-in-out mr-2 flex items-center"
+                  title="Edit Room"
+                >
                   <HiPencil className="mr-1" />
-                  Edit
+                  <span>Edit</span>
                 </button>
-                <button className="text-red-500 hover:underline flex items-center">
+                <button
+                  className="text-red-500 hover:bg-red-100 p-2 rounded-full transition duration-200 ease-in-out flex items-center"
+                  title="Delete Room"
+                >
                   <HiTrash className="mr-1" />
-                  Delete
+                  <span>Delete</span>
                 </button>
               </td>
             </tr>

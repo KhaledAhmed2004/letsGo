@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import { HiPencil, HiTrash, HiPlus } from "react-icons/hi";
-import { useRouter } from "next/navigation";
 import toast from "react-hot-toast"; // Importing react-hot-toast for notifications
+import { useRouter } from "next/navigation";
 
+// Interface for Package
 interface Package {
   id: string;
   name: string;
@@ -16,9 +17,10 @@ interface Package {
 const CustomModal: React.FC<{
   isOpen: boolean;
   onClose: () => void;
+  onUpdate: () => void; // Add onUpdate prop
   title: string;
   children: React.ReactNode;
-}> = ({ isOpen, onClose, title, children }) => {
+}> = ({ isOpen, onClose, onUpdate, title, children }) => {
   if (!isOpen) return null;
 
   return (
@@ -34,8 +36,8 @@ const CustomModal: React.FC<{
             Cancel
           </button>
           <button
-            className="w-full ml-2 p-2 bg-red-600 text-white rounded-lg shadow hover:bg-red-700 transition duration-200"
-            onClick={onClose}
+            className="w-full ml-2 p-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition duration-200"
+            onClick={onUpdate} // Use onUpdate prop here
           >
             Update
           </button>
@@ -58,6 +60,7 @@ const PackageManagementPage = () => {
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Mock package data
   const mockPackages: Package[] = [
     {
       id: "1",
@@ -99,7 +102,7 @@ const PackageManagementPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (formData.price < 0) {
-      toast.error("Price cannot be negative"); // Error message for negative price
+      toast.error("Price cannot be negative");
       return;
     }
 
@@ -110,10 +113,6 @@ const PackageManagementPage = () => {
         )
       );
       toast.success("Package updated successfully!");
-    } else {
-      const newPackage = { ...formData, id: Date.now().toString() }; // Generate new ID using current timestamp
-      setPackages([...packages, newPackage]);
-      toast.success("New package added successfully!");
     }
 
     setFormData({ id: "", name: "", description: "", price: 0 });
@@ -129,104 +128,105 @@ const PackageManagementPage = () => {
 
   const handleDelete = (id: string) => {
     setPackages(packages.filter((pkg) => pkg.id !== id));
-    toast.success("Package deleted successfully!"); // Success message on delete
+    toast.success("Package deleted successfully!");
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <div className="max-w-4xl mx-auto p-6">
-        <h1 className="text-3xl font-bold mb-6 text-center text-blue-700">
-          Package Management
-        </h1>
-        <div className="mb-4 text-center">
-          <button
-            className="flex items-center justify-center px-4 py-2 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition duration-200"
-            onClick={() => router.push("/add-package")}
-          >
-            <HiPlus className="mr-2" /> Add New Package
-          </button>
-        </div>
-
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-gray-300 rounded-lg shadow">
-            <thead>
-              <tr className="bg-gray-200 text-gray-600">
-                <th className="py-3 px-4 text-left">Package Name</th>
-                <th className="py-3 px-4 text-left">Description</th>
-                <th className="py-3 px-4 text-left">Price</th>
-                <th className="py-3 px-4 text-left">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {packages.map((pkg) => (
-                <tr
-                  key={pkg.id}
-                  className="border-b hover:bg-gray-100 transition duration-200"
-                >
-                  <td className="py-2 px-4">{pkg.name}</td>
-                  <td className="py-2 px-4">{pkg.description}</td>
-                  <td className="py-2 px-4">${pkg.price.toFixed(2)}</td>
-                  <td className="py-2 px-4 flex space-x-2">
-                    <button
-                      className="text-blue-600 hover:underline transition duration-200"
-                      onClick={() => handleEdit(pkg)}
-                    >
-                      <HiPencil className="inline mr-1" /> Edit
-                    </button>
-                    <button
-                      className="text-red-600 hover:underline transition duration-200"
-                      onClick={() => handleDelete(pkg.id)}
-                    >
-                      <HiTrash className="inline mr-1" /> Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        <CustomModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          title="Edit Package"
+    <div className="mx-auto p-6 bg-gray-100 min-h-screen">
+      <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">
+        Package Management
+      </h1>
+      <div className="mb-4 text-center">
+        <button
+          className="flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-green-700 transition duration-200"
+          onClick={() => router.push("/dashboard/add-package")}
         >
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              placeholder="Package Name"
-              value={formData.name}
-              onChange={handleInputChange}
-              className="block w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-              required
-            />
-            <textarea
-              name="description"
-              placeholder="Description"
-              value={formData.description}
-              onChange={handleInputChange}
-              className="block w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-              required
-            />
-            <input
-              type="number"
-              name="price"
-              placeholder="Price"
-              value={formData.price}
-              onChange={handleInputChange}
-              className="block w-full p-2 mb-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
-              required
-            />
-            <button
-              type="submit"
-              className="w-full p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
-            >
-              Update Package
-            </button>
-          </form>
-        </CustomModal>
+          <HiPlus className="mr-2" /> Add New Package
+        </button>
       </div>
+      <table className="min-w-full bg-white shadow-lg rounded-lg overflow-hidden">
+        <thead>
+          <tr className="bg-gray-200 text-gray-600 uppercase text-sm">
+            <th className="py-3 px-6 text-left">Package Name</th>
+            <th className="py-3 px-6 text-left">Description</th>
+            <th className="py-3 px-6 text-left">Price</th>
+            <th className="py-3 px-6 text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {packages.map((pkg, index) => (
+            <tr
+              key={pkg.id}
+              className={`border-b ${
+                index % 2 === 0 ? "bg-gray-50" : "bg-white"
+              } hover:bg-gray-100`}
+            >
+              <td className="py-4 px-6">
+                <span className="text-gray-700">{pkg.name}</span>
+              </td>
+              <td className="py-4 px-6">{pkg.description}</td>
+              <td className="py-4 px-6">${pkg.price.toFixed(2)}</td>
+              <td className="py-4 px-6 flex justify-center space-x-4">
+                <button
+                  className="text-blue-500 hover:bg-blue-100 p-2 rounded-full transition duration-200 ease-in-out flex items-center"
+                  onClick={() => handleEdit(pkg)}
+                  title="Edit Package"
+                >
+                  <HiPencil className="mr-1" />
+                  <span>Edit</span>
+                </button>
+                <button
+                  className="text-red-500 hover:bg-red-100 p-2 rounded-full transition duration-200 ease-in-out flex items-center"
+                  onClick={() => handleDelete(pkg.id)}
+                  title="Delete Package"
+                >
+                  <HiTrash className="mr-1" />
+                  <span>Delete</span>
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* Modal for Editing Package */}
+      <CustomModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onUpdate={handleSubmit} // Pass handleSubmit as onUpdate
+        title="Edit Package"
+      >
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit(e);
+          }}
+        >
+          <input
+            type="text"
+            name="name"
+            placeholder="Package Name"
+            value={formData.name}
+            onChange={handleInputChange}
+            className="block w-full p-2 mb-4 border rounded"
+          />
+          <textarea
+            name="description"
+            placeholder="Description"
+            value={formData.description}
+            onChange={handleInputChange}
+            className="block w-full p-2 mb-4 border rounded"
+          />
+          <input
+            type="number"
+            name="price"
+            placeholder="Price"
+            value={formData.price}
+            onChange={handleInputChange}
+            className="block w-full p-2 mb-4 border rounded"
+          />
+        </form>
+      </CustomModal>
     </div>
   );
 };
