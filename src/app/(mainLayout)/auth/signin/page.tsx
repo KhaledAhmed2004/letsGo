@@ -24,6 +24,7 @@ const SignInPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data: SignInFormInputs) => {
+    console.log(data)
     setLoading(true);
     try {
       // Simulate an API request

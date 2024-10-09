@@ -1,24 +1,24 @@
 "use client";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form"; // Import getValues from useForm
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 import Image from "next/image";
-import { MdEmail, MdLock } from "react-icons/md"; // Import React icons
+import { MdEmail, MdLock } from "react-icons/md";
 
-// Define an interface for form data
 interface SignUpFormInputs {
   email: string;
   password: string;
   confirmPassword: string;
-  terms: boolean; // Add terms field
+  terms: boolean;
 }
 
 const SignUpPage: React.FC = () => {
   const {
     register,
     handleSubmit,
+    getValues, // Import getValues
     formState: { errors },
   } = useForm<SignUpFormInputs>();
   const router = useRouter();
@@ -51,7 +51,6 @@ const SignUpPage: React.FC = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-4xl flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 h-[600px] overflow-hidden">
-        {/* Left Side: Form */}
         <div className="md:w-1/2 p-8">
           <h2 className="text-3xl font-bold mb-6 text-center text-gray-800 dark:text-white">
             Sign Up
@@ -107,9 +106,19 @@ const SignUpPage: React.FC = () => {
                   id="password"
                   {...register("password", {
                     required: "Password is required",
-                    minLength: {
-                      value: 6,
-                      message: "Password must be at least 6 characters",
+                    validate: {
+                      minLength: (value) =>
+                        value.length >= 8 ||
+                        "Password must be at least 8 characters long.",
+                      hasUpperCase: (value) =>
+                        /[A-Z]/.test(value) ||
+                        "Password must include at least one uppercase letter.",
+                      hasNumber: (value) =>
+                        /\d/.test(value) ||
+                        "Password must include at least one number.",
+                      hasSpecialChar: (value) =>
+                        /[@$!%*?&#^]/.test(value) ||
+                        "Password must include at least one special character.",
                     },
                   })}
                   className={`w-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out ${
@@ -142,6 +151,9 @@ const SignUpPage: React.FC = () => {
                   id="confirmPassword"
                   {...register("confirmPassword", {
                     required: "Please confirm your password",
+                    validate: (value) =>
+                      value === getValues("password") ||
+                      "Passwords do not match.",
                   })}
                   className={`w-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out ${
                     errors.confirmPassword
@@ -219,7 +231,7 @@ const SignUpPage: React.FC = () => {
             height={300} // Decreased height
             width={500}
             alt="Sign In Illustration"
-            className="object-cover w-full h-full shadow-md" // Added shadow for a better look
+            className="object-cover w-full h-full shadow-md"
           />
         </div>
       </div>
