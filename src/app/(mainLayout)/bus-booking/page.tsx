@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { FaClock, FaBus, FaMapMarkerAlt, FaCheckCircle } from "react-icons/fa"; // Importing icons
 // import { FaMale, FaFemale, FaTimesCircle, FaChair } from "react-icons/fa"; // Import relevant icons
 import { MdChair } from "react-icons/md";
+import { GiSteeringWheel } from "react-icons/gi";
 
 const FeaturedBus = () => {
   const seatStatuses = [
@@ -156,15 +157,14 @@ const FeaturedBus = () => {
           <form onSubmit={handleSubmit} className="max-w-6xl mx-auto p-4">
             {/* Seat Legend */}
             <div className="mb-6">
+              <h5 className="text-xl font-semibold mb-2">Seat Legend</h5>
               <ul className="flex flex-wrap gap-4">
                 {seatStatuses.map((status, index) => (
                   <li key={index} className="flex items-center">
-                    <MdChair className={`${status.color} text-2xl`} />{" "}
-                    {/* Icon with color */}
+                    <MdChair className={`${status.color} text-2xl`} />
                     <span className={`ml-2 ${status.color}`}>
                       {status.className}
-                    </span>{" "}
-                    {/* Status text */}
+                    </span>
                   </li>
                 ))}
               </ul>
@@ -172,8 +172,12 @@ const FeaturedBus = () => {
 
             {/* Seat Map */}
             <div className="flex flex-col lg:flex-row">
-              {/* <div className="col-7 col-sm-7 col-lg-4 order-2 order-lg-0"> */}
-              <div className="lg:w-1/3 mb-6 lg:mb-0">
+              <div className="lg:w-[30%] mb-6 lg:mb-0 border">
+                {/* <h5 className="text-xl font-semibold mb-4">Choose Your Seat</h5> */}
+                <div className="py-2 flex justify-end pr-10">
+                  <GiSteeringWheel className="text-4xl" />
+                </div>
+                <hr />
                 <ul className="grid grid-cols-1 gap-2">
                   {seatArrangement.map((row, rowIndex) => (
                     <li
@@ -183,14 +187,14 @@ const FeaturedBus = () => {
                       {row.map((seat, colIndex) => {
                         if (colIndex === 2) {
                           return (
-                            <div key={colIndex} className="w-12 h-12"></div>
+                            <div key={colIndex} className="w-16 h-16"></div>
                           ); // Gap
                         }
                         const status = seatStatuses[seat];
                         return (
                           <span
                             key={colIndex}
-                            className={`seat ${status.className} flex items-center justify-center`}
+                            className={`seat ${status.className} flex items-center justify-center cursor-pointer transition duration-300 transform hover:scale-105`}
                             onClick={() => handleSeatClick(rowIndex, colIndex)}
                             role="button"
                             tabIndex={0}
@@ -198,7 +202,7 @@ const FeaturedBus = () => {
                               colIndex + 1
                             } - ${status.className}`}
                           >
-                            <MdChair className={`${status.color} text-2xl`} />
+                            <MdChair className={`${status.color} text-4xl`} />
                           </span>
                         );
                       })}
@@ -211,71 +215,56 @@ const FeaturedBus = () => {
               <div className="col-span-12 sm:col-span-5 lg:col-span-8 order-1 lg:order-1">
                 <div className="flex bg-gray-50 p-6 rounded-lg shadow-lg">
                   {/* Boarding/Dropping Info */}
-                  {/* Boarding/Dropping Info */}
-                  <div className="lg:col-span-4 md:col-span-12 pr-4">
+                  <div className="lg:col-span-4 md:col-span-12 pr-4 w-[70%]">
                     <div className="seat-info pb-4 border-b border-gray-300">
-                      <div className="pt-4">
-                        <h6 className="text-red-600 font-semibold text-lg">
-                          Boarding/Dropping
-                        </h6>
-                      </div>
-                      <div className="row gap-4 sm:gap-6 mt-4">
+                      <h6 className="text-red-600 font-semibold text-lg">
+                        Boarding/Dropping
+                      </h6>
+                      <div className="mt-4">
                         {/* Boarding Point */}
-                        <div className="col-span-6 sm:col-span-12">
+                        <div className="mb-4">
                           <label
                             className="mb-2 font-medium text-gray-700"
                             htmlFor="boardingPoint"
                           >
                             Boarding Point*
                           </label>
-                          <div className="ant-form-item">
-                            <div className="ant-row ant-form-item-row">
-                              <div className="ant-col ant-form-item-control">
-                                <select
-                                  id="boardingPoint"
-                                  className="border border-gray-300 rounded-lg hover:shadow-md transition p-2 w-full"
-                                  required
-                                >
-                                  <option value="" disabled selected>
-                                    Select boarding point
-                                  </option>
-                                  <option value="point1">Point 1</option>
-                                  <option value="point2">Point 2</option>
-                                  <option value="point3">Point 3</option>
-                                  {/* Add more options as needed */}
-                                </select>
-                              </div>
-                            </div>
-                          </div>
+                          <select
+                            id="boardingPoint"
+                            className="border border-gray-300 rounded-lg hover:shadow-md transition p-2 w-full"
+                            required
+                          >
+                            <option value="" disabled selected>
+                              Select boarding point
+                            </option>
+                            <option value="point1">Point 1</option>
+                            <option value="point2">Point 2</option>
+                            <option value="point3">Point 3</option>
+                            {/* Add more options as needed */}
+                          </select>
                         </div>
 
                         {/* Dropping Point */}
-                        <div className="col-span-6 sm:col-span-12">
+                        <div className="mb-4">
                           <label
                             className="mb-2 font-medium text-gray-700"
                             htmlFor="droppingPoint"
                           >
                             Dropping Point*
                           </label>
-                          <div className="ant-form-item">
-                            <div className="ant-row ant-form-item-row">
-                              <div className="ant-col ant-form-item-control">
-                                <select
-                                  id="droppingPoint"
-                                  className="border border-gray-300 rounded-lg hover:shadow-md transition p-2 w-full"
-                                  required
-                                >
-                                  <option value="" disabled selected>
-                                    Select dropping point
-                                  </option>
-                                  <option value="drop1">Drop Point 1</option>
-                                  <option value="drop2">Drop Point 2</option>
-                                  <option value="drop3">Drop Point 3</option>
-                                  {/* Add more options as needed */}
-                                </select>
-                              </div>
-                            </div>
-                          </div>
+                          <select
+                            id="droppingPoint"
+                            className="border border-gray-300 rounded-lg hover:shadow-md transition p-2 w-full"
+                            required
+                          >
+                            <option value="" disabled selected>
+                              Select dropping point
+                            </option>
+                            <option value="drop1">Drop Point 1</option>
+                            <option value="drop2">Drop Point 2</option>
+                            <option value="drop3">Drop Point 3</option>
+                            {/* Add more options as needed */}
+                          </select>
                         </div>
 
                         {/* Seat Information */}
@@ -305,38 +294,35 @@ const FeaturedBus = () => {
                   {/* Form */}
                   <div className="lg:col-span-8 md:col-span-12 mt-6 lg:mt-0">
                     <div className="p-6 bg-white rounded-lg shadow-md">
-                      <div className="row items-center">
-                        <div className="col-12">
-                          <label
-                            htmlFor="mobile"
-                            className="text-gray-700 font-medium"
-                          >
-                            Mobile Number*
-                          </label>
-                          <input
-                            name="phoneNumber"
-                            type="text"
-                            id="mobile"
-                            required
-                            className="w-full border border-gray-300 rounded-lg p-2 mt-2 focus:outline-none focus:ring-2 focus:ring-red-500"
-                            placeholder="Enter your mobile number"
-                          />
-                        </div>
-                        <div className="col-12">
-                          <button className="bg-red-600 text-white w-full py-2 mt-6 rounded-lg shadow hover:bg-red-700 transition">
-                            Submit
-                          </button>
-                        </div>
-                      </div>
-                      <p className="mt-4 text-gray-600">
-                        Already verified your phone number and have a password?
-                        <button
-                          type="button"
-                          className="text-red-600 underline ml-2"
+                      <div className="flex flex-col">
+                        <label
+                          htmlFor="mobile"
+                          className="text-gray-700 font-medium"
                         >
-                          Click here to login
+                          Mobile Number*
+                        </label>
+                        <input
+                          name="phoneNumber"
+                          type="text"
+                          id="mobile"
+                          required
+                          className="w-full border border-gray-300 rounded-lg p-2 mt-2 focus:outline-none focus:ring-2 focus:ring-red-500"
+                          placeholder="Enter your mobile number"
+                        />
+                        <button className="bg-red-600 text-white w-full py-2 mt-6 rounded-lg shadow hover:bg-red-700 transition">
+                          Submit
                         </button>
-                      </p>
+                        <p className="mt-4 text-gray-600">
+                          Already verified your phone number and have a
+                          password?
+                          <button
+                            type="button"
+                            className="text-red-600 underline ml-2"
+                          >
+                            Click here to login
+                          </button>
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
