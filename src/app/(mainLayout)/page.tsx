@@ -7,7 +7,7 @@ import MordenAndBeutiful from "../../components/homePage/MordenAndBeutiful";
 import HeroSection from "../../components/homePage/HeroSection";
 import PopularDestinations from "../../components/homePage/PopularDestinations";
 
-const HomePage = () => {
+const HomePage = async () => {
   return (
     <div>
       <HeroSection />

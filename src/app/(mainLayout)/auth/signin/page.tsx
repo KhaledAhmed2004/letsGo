@@ -7,7 +7,7 @@ import Link from "next/link";
 import { FaGoogle, FaFacebook } from "react-icons/fa"; // Import Google and Facebook icons
 import Image from "next/image";
 import { MdEmail, MdLock } from "react-icons/md";
-
+import { signIn } from "next-auth/react";
 // Define an interface for form data
 interface SignInFormInputs {
   email: string;
@@ -24,7 +24,7 @@ const SignInPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data: SignInFormInputs) => {
-    console.log(data)
+    console.log(data);
     setLoading(true);
     try {
       // Simulate an API request
@@ -140,7 +140,8 @@ const SignInPage: React.FC = () => {
             <div className="flex justify-between mt-4 gap-2">
               <button
                 type="button"
-                onClick={() => handleSocialSignIn("Google")}
+                // onClick={() => handleSocialSignIn("Google")}
+                onClick={() => signIn("google", { callbackUrl: "/" })}
                 className="flex items-center justify-center w-full border-2 border-red-600 text-red-600 bg-transparent py-2 rounded-lg hover:bg-red-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300 ease-in-out dark:text-red-400 dark:border-red-400 dark:hover:bg-red-500 dark:hover:text-white"
               >
                 <FaGoogle className="mr-2" />
