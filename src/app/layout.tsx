@@ -30,6 +30,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+        <script src="https://mediafiles.botpress.cloud/7e773a0f-608c-4642-b9d4-7fc69565c2f4/webchat/config.js" defer></script>
         <StoreProvider>
           <Toaster />
           <div>{children}</div>

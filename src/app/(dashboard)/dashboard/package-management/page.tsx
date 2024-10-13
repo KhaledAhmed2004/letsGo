@@ -298,27 +298,27 @@ const PackageManagementPage = () => {
   const mockPackages: Package[] = [
     {
       id: "1",
-      name: "Basic Package",
+      name: "Premium Package",
       description: "A basic package with essential features.",
-      price: 99.99,
+      price: 10000,
     },
     {
       id: "2",
       name: "Premium Package",
       description: "A premium package with additional benefits.",
-      price: 199.99,
+      price: 7999,
     },
     {
       id: "3",
       name: "Family Package",
       description: "A family package for larger groups.",
-      price: 299.99,
+      price: 8999,
     },
     {
       id: "4",
-      name: "Luxury Package",
+      name: "Single Package",
       description: "A luxury package with exclusive services.",
-      price: 499.99,
+      price: 7000,
     },
   ];
 
@@ -399,7 +399,7 @@ const PackageManagementPage = () => {
                 <span className="text-gray-700">{pkg.name}</span>
               </td>
               <td className="py-4 px-6">{pkg.description}</td>
-              <td className="py-4 px-6">${pkg.price.toFixed(2)}</td>
+              <td className="py-4 px-6"> ৳ {pkg.price.toFixed(2)}</td>
               <td className="py-4 px-6 flex justify-center space-x-4">
                 <button
                   className="text-blue-500 hover:bg-blue-100 p-2 rounded-full transition duration-200 ease-in-out flex items-center"

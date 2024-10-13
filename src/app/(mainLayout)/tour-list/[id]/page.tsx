@@ -72,7 +72,7 @@ const Overview = async ({ params }: OverviewProps) => {
               Explore the Beauty of {packgeDitels?.destination}
             </h1>
             <p className="text-xl mt-3 text-center max-w-md font-semibold">
-              Only ${packgeDitels?.price}{" "}
+              Only {packgeDitels?.price}{" "} TK 
               <span className="text-sm">(per person)</span>
             </p>
             <p className="text-lg mt-3 text-center">
@@ -100,9 +100,9 @@ const Overview = async ({ params }: OverviewProps) => {
             <li className="flex items-center text-blue-600 dark:text-blue-400 text-md font-semibold">
               <FaClock className="mr-2" /> {packgeDitels?.duration}
             </li>
-            <li className="flex items-center text-blue-600 dark:text-blue-400 text-md font-semibold">
+            {/* <li className="flex items-center text-blue-600 dark:text-blue-400 text-md font-semibold">
               <FaUser className="mr-2" /> Age 15+
-            </li>
+            </li> */}
             <li className="flex items-center text-blue-600 dark:text-blue-400 text-md font-semibold">
               <FaMapMarkerAlt className="mr-2" /> {packgeDitels?.destination}
             </li>

@@ -15,9 +15,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div className="text-center md:text-left">
-            <h3 className="text-2xl font-bold text-white mb-4">LetsGo</h3>
+            <h3 className="text-2xl font-bold text-white mb-4">Tourist Express</h3>
             <p className="text-gray-400 mb-4">
-              Discover new destinations with ease. Book affordable flights,
+              Discover new destinations with Tourist Express. Book affordable flights,
               hotels, and tours all in one place. Let’s make your next adventure
               unforgettable!
             </p>
@@ -105,13 +105,13 @@ const Footer = () => {
             {/* Phone Section */}
             <div className="flex justify-center md:justify-start items-center gap-2 mb-2">
               <FaPhoneAlt size={16} className="text-teal-500" />
-              <p className="text-gray-400">+987 654 3210</p>
+              <p className="text-gray-400">+8801735807444</p>
             </div>
 
             {/* Email Section */}
             <div className="flex justify-center md:justify-start items-center gap-2">
               <MdEmail size={16} className="text-teal-500" />
-              <p className="text-gray-400">support@letsGo.com</p>
+              <p className="text-gray-400">support@touristExpress.com</p>
             </div>
           </div>
         </div>
@@ -119,7 +119,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-gray-700 mt-8 pt-6 text-center">
           <p className="text-gray-400">
-            &copy; {new Date().getFullYear()} LetsGo. All rights reserved.
+            &copy; {new Date().getFullYear()} Tourist Express. All rights reserved.
           </p>
         </div>
       </div>

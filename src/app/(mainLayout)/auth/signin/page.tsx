@@ -29,8 +29,11 @@ const SignInPage: React.FC = () => {
     try {
       // Simulate an API request
       await new Promise((resolve) => setTimeout(resolve, 2000)); // Fake delay
-      toast.success("Sign In Successful!");
-      router.push("/dashboard"); // Navigate to dashboard
+      //toast.success("Sign In Successful!");
+      
+      toast.error("Please provide correct email and Password");
+      toast.error("Sign In Failed. Please try again.");
+      // router.push("/dashboard"); // Navigate to dashboard
     } catch {
       toast.error("Sign In Failed. Please try again."); // Remove the error variable
     } finally {

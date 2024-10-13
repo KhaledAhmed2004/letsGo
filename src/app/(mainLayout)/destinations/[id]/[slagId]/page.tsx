@@ -39,7 +39,7 @@ const DestinationDetailsPage: React.FC<DestinationDetailsPageProps> = async ({
 
         <div className="md:w-1/2">
           <h2 className="text-4xl font-bold mb-2 text-blue-600">
-            Beautiful Mountains Retreat
+            Beautiful Mohamaya lake
           </h2>
 
           <div className="flex items-center mb-4">
@@ -47,15 +47,11 @@ const DestinationDetailsPage: React.FC<DestinationDetailsPageProps> = async ({
               <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalfAlt />
             </span>
             <p className="text-gray-700">(4.5 out of 5 stars)</p>
-            <p className="text-blue-500 ml-4">(120 Reviews)</p>
+            <p className="text-blue-500 ml-4">(20 Reviews)</p>
           </div>
 
           <p className="text-gray-700 mb-4">
-            This destination is known for its breathtaking landscapes, rich
-            history, and vibrant culture. The best time to visit is from
-            September to November when the weather is perfect for outdoor
-            activities. Experience the thrill of hiking, indulge in local
-            cuisine, and soak in the stunning scenic views throughout your stay.
+          Mohamaya Lake, located in Mirsarai, Chittagong, is a stunning man-made lake surrounded by hills and lush greenery. It offers a serene and peaceful escape for nature lovers, with activities such as boating, kayaking, and hiking. The crystal-clear water and scenic beauty make it a perfect spot for relaxation and adventure. Mohamaya Lake is becoming an increasingly popular destination for tourists seeking tranquility amidst nature.
           </p>
 
           <div className="mt-6 bg-gray-100 p-4 rounded-lg shadow-sm">
@@ -63,10 +59,10 @@ const DestinationDetailsPage: React.FC<DestinationDetailsPageProps> = async ({
               Contact Information
             </h3>
             <p className="text-gray-800">
-              <strong>Phone:</strong> +123-456-7890
+              <strong>Phone:</strong> +8801735807444
             </p>
             <p className="text-gray-800">
-              <strong>Email:</strong> info@mountainsretreat.com
+              <strong>Email:</strong> info@touristExpress.com
             </p>
           </div>
         </div>
@@ -92,8 +88,7 @@ const DestinationDetailsPage: React.FC<DestinationDetailsPageProps> = async ({
           <h3 className="text-xl font-semibold">Best Time to Visit</h3>
           <p className="text-gray-700">
             <FaCalendarAlt className="inline-block text-blue-500 mr-2" />
-            <strong>September to November:</strong> Experience ideal weather for
-            outdoor activities and sightseeing.
+            <strong>November to February:</strong> The best time to visit Mohamaya Lake when the weather is cooler and more comfortable for outdoor activities and enjoying the lake’s scenic beauty.
           </p>
 
           <h3 className="text-xl font-semibold">Activities</h3>

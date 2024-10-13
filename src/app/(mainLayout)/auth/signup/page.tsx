@@ -39,7 +39,7 @@ const SignUpPage: React.FC = () => {
       }
 
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      toast.success("Sign Up Successful!");
+      toast.success("Sign Up Successful!, Please Sign In");
       router.push("/dashboard");
     } catch {
       toast.error("Sign Up Failed. Please try again.");
@@ -57,6 +57,32 @@ const SignUpPage: React.FC = () => {
           </h2>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             {/* Email Input */}
+
+            
+            <div>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
+                Name
+              </label>
+              <div className="flex items-center border rounded-lg shadow-sm">
+                
+                <input
+                  type="text"
+                  id="text"
+                
+                  className={`w-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out ${
+                    errors.email
+                      ? "border-red-500"
+                      : "border-gray-300 dark:border-gray-600"
+                  } dark:bg-gray-700 dark:text-gray-200`}
+                  placeholder="Enter your Name"
+                />
+              </div>
+             
+            </div>
+
             <div>
               <label
                 htmlFor="email"

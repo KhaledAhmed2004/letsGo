@@ -52,7 +52,7 @@ const Navbar = () => {
                 : "text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-gray-100"
             }`}
           >
-            Hotel
+            Home
           </Link>
           <Link
             href="/destinations"
@@ -102,12 +102,12 @@ const Navbar = () => {
                 : "text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-gray-100"
             }`}
           >
-            Contact
+            Bus Ticket
           </Link>
           <Link
             href="dashboard/package-management"
             className={`${
-              isActive("/package-management")
+              isActive("/contact")
                 ? "bg-blue-600 dark:bg-gray-700 text-white px-4 py-2 rounded-md font-bold"
                 : "text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-gray-100"
             }`}
