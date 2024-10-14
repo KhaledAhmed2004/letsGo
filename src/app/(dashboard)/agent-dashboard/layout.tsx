@@ -2,14 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation"; // Import usePathname
-import {
-  FaHome,
-  FaPlus,
-  FaBed,
-  FaClipboardList,
-  FaNewspaper,
-  FaBoxOpen,
-} from "react-icons/fa"; // Import icons
+import { FaHome, FaBed } from "react-icons/fa"; // Import icons
 import Navbar from "@/components/shared/Navbar";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
@@ -19,24 +12,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   const navLinks = [
     { name: "Dashboard", path: "/dashboard", icon: <FaHome /> },
-    { name: "Add Package", path: "/dashboard/add-package", icon: <FaPlus /> },
     {
       name: "Add Hotel Room",
-      path: "/dashboard/add-hotel-room",
+      path: "/agent-dashboard/add-hotel-room",
       icon: <FaBed />,
     },
-    {
-      name: "Package Management",
-      path: "/dashboard/package-management",
-      icon: <FaClipboardList />,
-    },
-    {
-      name: "Room Management",
-      path: "/dashboard/room-management",
-      icon: <FaBed />,
-    },
-    { name: "Blog Post", path: "/dashboard/blog-post", icon: <FaNewspaper /> },
-    { name: "Booking List", path: "/dashboard/booking-list", icon: <FaBoxOpen /> },
   ];
 
   const handleClickOutside = (event: MouseEvent) => {
