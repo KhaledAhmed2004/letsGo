@@ -36,8 +36,7 @@ const TravelBlogPage: React.FC = async () => {
 
       {/* Marquee Section */}
       <Marquee className="bg-blue-600 text-white p-4 text-lg">
-        Breaking News: New travel guidelines have been issued. Check out the
-        latest destinations for your next adventure! 🌍✈️
+        Breaking News: 23-day travel ban has been imposed on three hill districts of Rangamati, Bandarban, and Khagrachhari, starting 8 October. 
       </Marquee>
 
       {/* Blog Section */}
