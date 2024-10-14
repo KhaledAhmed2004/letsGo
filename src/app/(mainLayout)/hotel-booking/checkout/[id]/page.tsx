@@ -4,6 +4,7 @@ import { TbCurrencyTaka } from "react-icons/tb";
 import { FaPlus, FaMinus, FaBed, FaStar, FaCrown } from "react-icons/fa6";
 import { Rating } from "@smastrom/react-rating";
 import Image from "next/image";
+import { initialPayment } from "@/utils/payment";
 
 const ProductDetailsPage = () => {
   const [count, setCount] = useState(1);
@@ -255,7 +256,10 @@ const ProductDetailsPage = () => {
             </div>
 
             {/* Add to Cart Button */}
-            <button className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out">
+            <button
+              onClick={() => initialPayment()}
+              className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300 ease-in-out"
+            >
               Add to Cart
             </button>
           </div>
