@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import Image from "next/image";
+import Swal from "sweetalert2"; // Import sweetalert2
 import TestimonialImg1 from "../../assets/images/testimonial/user-img-1.png";
 import TestimonialImg2 from "../../assets/images/testimonial/user-img-2.png";
 import TestimonialImg3 from "../../assets/images/testimonial/user-img-3.png";
@@ -19,12 +20,12 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
   onClose,
   onSubmit,
 }) => {
-  const [rating, setRating] = useState<number>(0); // State to manage selected rating
-  const [feedback, setFeedback] = useState<string>(""); // State to manage feedback input
+  const [rating, setRating] = useState<number>(0);
+  const [feedback, setFeedback] = useState<string>("");
 
   const handleSubmit = () => {
-    onSubmit(rating, feedback); // Call the submit function passed from the parent
-    onClose(); // Close the modal after submission
+    onSubmit(rating, feedback);
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -76,27 +77,49 @@ const FeedbackModal: React.FC<FeedbackModalProps> = ({
   );
 };
 
-// Define the type for testimonials
-interface Testimonial {
-  rating: number;
-  feedback: string;
-}
-
 const Testimonial: React.FC = () => {
-  const [isModalOpen, setModalOpen] = useState<boolean>(false); // State for modal visibility
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]); // State for storing testimonials
+  const [isModalOpen, setModalOpen] = useState<boolean>(false);
+  const [testimonials, setTestimonials] = useState([
+    {
+      rating: 3,
+      feedback: "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      user: "Amy Johnson",
+      img: TestimonialImg1,
+    },
+    {
+      rating: 4,
+      feedback: "Eveniet, eos velit ducimus modi fugiat nulla aperiam.",
+      user: "John Doe",
+      img: TestimonialImg2,
+    },
+    {
+      rating: 5,
+      feedback: "Beatae ratione illum reprehenderit?",
+      user: "Jane Smith",
+      img: TestimonialImg3,
+    },
+    {
+      rating: 3,
+      feedback: "Lorem ipsum dolor sit amet, consectetur.",
+      user: "Emily Davis",
+      img: TestimonialImg4,
+    },
+  ]);
 
-  const handleOpenModal = () => {
-    setModalOpen(true); // Open the modal
-  };
-
-  const handleCloseModal = () => {
-    setModalOpen(false); // Close the modal
-  };
+  const handleOpenModal = () => setModalOpen(true);
+  const handleCloseModal = () => setModalOpen(false);
 
   const handleSubmitFeedback = (rating: number, feedback: string) => {
-    setTestimonials([...testimonials, { rating, feedback }]);
-    console.log("Feedback submitted:", { rating, feedback });
+    setTestimonials([
+      ...testimonials,
+      { rating, feedback, user: "New User", img: TestimonialImg1 },
+    ]);
+    Swal.fire({
+      icon: "success",
+      title: "Thank you!",
+      text: "Your feedback has been submitted successfully.",
+      confirmButtonColor: "#3b82f6",
+    });
   };
 
   return (
@@ -110,30 +133,30 @@ const Testimonial: React.FC = () => {
         </h2>
       </div>
       <div className="testimonial-cards-wrappers mt-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((item, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {testimonials.slice(0, 4).map((item, index) => (
             <div
               key={index}
-              className="testimonial-single-card border p-4 rounded-lg shadow-lg transition-transform duration-300 hover:shadow-xl transform hover:scale-105"
+              className="testimonial-single-card border p-4 rounded-lg shadow-md transition-transform duration-150 hover:shadow-lg transform hover:scale-105"
             >
-              <div className="stars flex justify-center text-yellow-500 mb-2">
+              <div className="stars flex justify-center text-yellow-500">
                 {[...Array(item.rating)].map((_, i) => (
                   <FaStar key={i} />
                 ))}
               </div>
-              <p className="text-gray-500 font-semibold text-center mb-2">
+              <p className="text-gray-400 font-semibold text-center mt-7">
                 {item.feedback}
               </p>
-              <h3 className="font-bold text-lg text-center mt-2">
-                User {index + 1}
+              <h3 className="font-bold text-lg text-center mt-10">
+                {item.user}
               </h3>
-              <span className="font-bold text-sm mt-1 text-center block text-gray-400">
+              <span className="font-bold text-sm mt-2 text-center block text-gray-400">
                 Traveler
               </span>
               <div className="testimonial-user-img flex justify-center items-center mt-2">
                 <Image
-                  src={TestimonialImg1}
-                  alt="User Image"
+                  src={item.img}
+                  alt={item.user}
                   width={50}
                   height={50}
                   className="rounded-full"
@@ -141,88 +164,6 @@ const Testimonial: React.FC = () => {
               </div>
             </div>
           ))}
-        </div>
-        <div className="flex">
-          {/* Testimonial Single Card */}
-          <div className="testimonial-single-card">
-            <div className="stars flex justify-center text-yellow-500">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-            </div>
-            <p className="text-gray-400 font-semibold text-center mt-7">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
-              eos velit ducimus modi fugiat nulla aperiam beatae ratione illum
-              reprehenderit?
-            </p>
-            <h3 className="font-bold text-lg text-center mt-10">Amy Jonson</h3>
-            <span className="font-bold text-sm mt-2 text-center block text-gray-400">
-              Traveler
-            </span>
-            <div className="testimonial-user-img flex justify-center items-center mt-2">
-              <Image src={TestimonialImg1} alt="" />
-            </div>
-          </div>
-          {/* Testimonial Single Card */}
-          <div className="testimonial-single-card">
-            <div className="stars flex justify-center text-yellow-500">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-            </div>
-            <p className="text-gray-400 font-semibold text-center mt-7">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
-              eos velit ducimus modi fugiat nulla aperiam beatae ratione illum
-              reprehenderit?
-            </p>
-            <h3 className="font-bold text-lg text-center mt-10">Amy Jonson</h3>
-            <span className="font-bold text-sm mt-2 text-center block text-gray-400">
-              Traveler
-            </span>
-            <div className="testimonial-user-img flex justify-center items-center mt-2">
-              <Image src={TestimonialImg2} alt="" />
-            </div>
-          </div>
-          {/* Testimonial Single Card */}
-          <div className="testimonial-single-card">
-            <div className="stars flex justify-center text-yellow-500">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-            </div>
-            <p className="text-gray-400 font-semibold text-center mt-7">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
-              eos velit ducimus modi fugiat nulla aperiam beatae ratione illum
-              reprehenderit?
-            </p>
-            <h3 className="font-bold text-lg text-center mt-10">Amy Jonson</h3>
-            <span className="font-bold text-sm mt-2 text-center block text-gray-400">
-              Traveler
-            </span>
-            <div className="testimonial-user-img flex justify-center items-center mt-2">
-              <Image src={TestimonialImg3} alt="" />
-            </div>
-          </div>
-          {/* Testimonial Single Card */}
-          <div className="testimonial-single-card">
-            <div className="stars flex justify-center text-yellow-500">
-              <FaStar />
-              <FaStar />
-              <FaStar />
-            </div>
-            <p className="text-gray-400 font-semibold text-center mt-7">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
-              eos velit ducimus modi fugiat nulla aperiam beatae ratione illum
-              reprehenderit?
-            </p>
-            <h3 className="font-bold text-lg text-center mt-10">Amy Jonson</h3>
-            <span className="font-bold text-sm mt-2 text-center block text-gray-400">
-              Traveler
-            </span>
-            <div className="testimonial-user-img flex justify-center items-center mt-2">
-              <Image src={TestimonialImg4} alt="" />
-            </div>
-          </div>
         </div>
       </div>
       <button

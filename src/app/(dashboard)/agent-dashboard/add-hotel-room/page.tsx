@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { AiOutlineCamera } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import Swal from "sweetalert2"; // Import SweetAlert2
 
 const AddHotelRoom = () => {
   const [formData, setFormData] = useState({
@@ -34,12 +35,30 @@ const AddHotelRoom = () => {
     setImagePreview(null);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Hotel Room Data:", formData);
     if (selectedImage) {
       console.log("Selected Image:", selectedImage);
     }
+
+    // Show success alert
+    await Swal.fire({
+      title: "Success!",
+      text: "Hotel room added successfully.",
+      icon: "success",
+      confirmButtonText: "Okay",
+    });
+
+    // Reset form
+    setFormData({
+      roomNumber: "",
+      pricePerNight: "",
+      roomType: "",
+      amenities: "",
+    });
+    setSelectedImage(null);
+    setImagePreview(null);
   };
 
   return (
