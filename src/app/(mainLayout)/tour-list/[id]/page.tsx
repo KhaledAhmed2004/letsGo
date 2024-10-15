@@ -1,5 +1,5 @@
+import BookingButton from "@/components/BookingButton";
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import {
   FaClock,
@@ -34,9 +34,9 @@ interface OverviewProps {
   };
 }
 const Overview = async ({ params }: OverviewProps) => {
-  // Fetch the package details
-  // const res = await fetch(`http://localhost:5000/api/package/${params?.id}`);
-  const res = await fetch(`https://tour-gide-server.vercel.app/api/package/${params?.id}`);
+  const res = await fetch(
+    `https://tour-gide-server.vercel.app/api/package/${params?.id}`
+  );
   const data = await res.json();
   const packgeDitels: PackageDetails = data?.data; // Use the fetched data
 
@@ -56,6 +56,36 @@ const Overview = async ({ params }: OverviewProps) => {
   // Image gallery data
   // const imageGallery = packgeDitels?.gallery;
   const imageGallery: string[] = packgeDitels?.gallery || []; // Default to an empty array
+
+  // Function to handle booking when "Book Now" is clicked
+  // const handleBooking = async () => {
+  //   try {
+  //     const orderData = {
+  //       customerName: "John Doe", // Replace with actual customer name or retrieve from user data
+  //       quantity: 1,
+  //       totalPrice: packgeDitels.price,
+  //     };
+
+  //     const response = await fetch("/api/order", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(orderData),
+  //     });
+
+  //     if (response.ok) {
+  //       const result = await response.json();
+  //       alert("Order created successfully!");
+  //       console.log("Order details:", result);
+  //     } else {
+  //       alert("Failed to create order");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error creating order:", error);
+  //     alert("An error occurred while creating the order.");
+  //   }
+  // };
 
   return (
     <section className="dark:bg-gray-900">
@@ -79,12 +109,13 @@ const Overview = async ({ params }: OverviewProps) => {
               {packgeDitels?.description ||
                 "Discover breathtaking landscapes and unforgettable experiences!"}
             </p>
-            <Link
-              href={`/tour-list/${params.id}/1`}
+            {/* <button
+              onClick={handleBooking}
               className="mt-6 px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
             >
               Book Now
-            </Link>
+            </button> */}
+            <BookingButton price={packgeDitels.price} />
           </div>
         </div>
         {/* Overview Section */}

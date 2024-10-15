@@ -332,7 +332,7 @@ const Navbar = () => {
     if (role === "admin") {
       return "/admin-dashboard/blog-post";
     } else if (role === "agent") {
-      return "/agent-dashboard/room";
+      return "/agent-dashboard/add-hotel-room";
     } else {
       return "/dashboard/booking-list"; // Default for "user"
     }
@@ -402,6 +402,7 @@ const Navbar = () => {
                 : "text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-gray-100"
             }`}
           >
+            Bus Ticket
             Bus Ticket
           </Link>
           <Link

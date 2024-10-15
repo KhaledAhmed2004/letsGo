@@ -25,7 +25,7 @@ export default function BookingForm() {
     <div className="dark:bg-gray-700 py-4">
       <div className="max-w-lg mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-          Book Your Tour
+          Booking From
         </h2>
 
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -115,41 +115,13 @@ export default function BookingForm() {
             )}
           </div>
 
-          {/* Number of Travelers */}
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 dark:text-gray-300 mb-2"
-              htmlFor="travelers"
-            >
-              Number of Travelers
-            </label>
-            <input
-              id="travelers"
-              type="number"
-              {...register("travelers", {
-                required: "Number of travelers is required",
-                min: { value: 1, message: "At least 1 traveler required" },
-              })}
-              className={`w-full px-4 py-2 border dark:bg-gray-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                errors.travelers
-                  ? "border-red-500"
-                  : "border-gray-300 dark:border-gray-600"
-              }`}
-            />
-            {errors.travelers && (
-              <span className="text-red-500 text-sm">
-                {errors.travelers.message}
-              </span>
-            )}
-          </div>
-
           {/* Submit Button */}
           <div className="flex justify-center">
             <button
               type="submit"
               className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
             >
-              Book Now
+              Next
             </button>
           </div>
         </form>
