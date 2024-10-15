@@ -25,14 +25,14 @@ const ContactUsPage = () => {
         <FaEnvelope className="text-5xl text-red-500 group-hover:text-red-700 transition-all duration-300 dark:text-red-300 dark:group-hover:text-red-500" />
       ),
       title: "Email",
-      info: "info@example.com",
+      info: "info@touristExpress.com",
     },
     {
       icon: (
         <FaMapMarkerAlt className="text-5xl text-green-500 group-hover:text-green-700 transition-all duration-300 dark:text-green-300 dark:group-hover:text-green-500" />
       ),
       title: "Address",
-      info: "123 Main Street, City, Country",
+      info: "Merul Badda, Dhaka, Bangladesh",
     },
   ];
 

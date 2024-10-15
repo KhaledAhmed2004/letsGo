@@ -47,7 +47,7 @@ const TourList = () => {
   // State management for filters
   const [searchQuery, setSearchQuery] = useState("");
   const [minPrice, setMinPrice] = useState<number>(0);
-  const [maxPrice, setMaxPrice] = useState<number>(10000);
+  const [maxPrice, setMaxPrice] = useState<number>(50000);
   const [sortByOrder, setSortByOrder] = useState<"asc" | "desc">("asc");
   const [drawerVisible, setDrawerVisible] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState<string>("");
@@ -65,7 +65,7 @@ const TourList = () => {
   const handleForClear = () => {
     setSearchQuery("");
     setMinPrice(0);
-    setMaxPrice(10000);
+    setMaxPrice(50000);
     setSortByOrder("asc");
     setSelectedMonth("");
   };
@@ -109,7 +109,7 @@ const TourList = () => {
           <div className="p-6 dark:bg-gray-800">
             <div className="flex justify-between mb-4">
               <p className="font-semibold text-lg dark:text-white">
-                Filter Products
+                Filter Packages
               </p>
               <div className="flex items-center gap-1 text-blue-600 font-medium dark:text-blue-400">
                 <button onClick={handleForClear}>Reset All</button>
@@ -169,7 +169,7 @@ const TourList = () => {
         {/* Filter Section for larger devices */}
         <div className="hidden lg:block bg-gray-100 dark:bg-gray-800 h-fit rounded-lg w-full lg:w-[28%] p-6 shadow-lg dark:text-white">
           <div className="flex justify-between mb-4">
-            <p className="font-semibold text-lg">Filter Products</p>
+            <p className="font-semibold text-lg">Filter Packages</p>
             <div className="flex items-center gap-1 text-blue-600 dark:text-blue-400 font-medium">
               <button onClick={handleForClear}>Reset All</button>
               <RxCross2 className="cursor-pointer" onClick={closeDrawer} />
@@ -195,7 +195,7 @@ const TourList = () => {
             <p className="text-sm text-gray-600 dark:text-gray-300 font-semibold mb-2">
               Price Range:{" "}
               <span className="font-bold">
-                ${minPrice} - ${maxPrice}
+              ৳{minPrice} - ৳{maxPrice}
               </span>
             </p>
             <Slider
@@ -207,7 +207,7 @@ const TourList = () => {
               }}
               className="w-full"
               min={0}
-              max={10000}
+              max={50000}
             />
           </div>
 

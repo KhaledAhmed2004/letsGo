@@ -43,13 +43,13 @@ const HeroSection = () => {
           />
 
           {/* Tour Type Dropdown */}
-          <select className="w-full sm:w-48 md:w-56 lg:w-64 px-6 py-4 rounded-full text-gray-800 bg-white focus:outline-none focus:ring-4 focus:ring-teal-500 transition duration-300">
+          {/* <select className="w-full sm:w-48 md:w-56 lg:w-64 px-6 py-4 rounded-full text-gray-800 bg-white focus:outline-none focus:ring-4 focus:ring-teal-500 transition duration-300">
             <option value="">Select Tour Type</option>
             <option value="couple">Couple Tour</option>
             <option value="group">Group Tour</option>
             <option value="adventure">Adventure Tour</option>
             <option value="luxury">Luxury Tour</option>
-          </select>
+          </select> */}
 
           {/* Search Button */}
           <button className="bg-teal-500 hover:bg-teal-600 text-white px-6 sm:px-8 py-4 rounded-full font-semibold shadow-lg transition-transform duration-300 transform hover:scale-105">

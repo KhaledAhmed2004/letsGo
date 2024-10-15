@@ -139,7 +139,7 @@ const PackageCard: React.FC<PackageCardProps> = ({ tour }) => {
 
         {/* Price */}
         <p className="text-lg font-semibold text-gray-900 dark:text-gray-100 mt-2">
-          Price: ${tour.price}
+          Price: ৳ {tour.price}
         </p>
 
         {/* Status with icons */}

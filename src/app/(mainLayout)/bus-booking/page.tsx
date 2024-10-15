@@ -33,7 +33,7 @@ const FeaturedBus = () => {
       endPoint: "Chittagong",
       departureTime: "6:15 AM",
       arrivalTime: "12:35 PM",
-      seatsAvailable: 36,
+      seatsAvailable: 32,
       additionalCharge: "No Additional Charge",
       price: 690.0,
     },
@@ -109,8 +109,8 @@ const FeaturedBus = () => {
   const seatArrangement = [
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
-    [1, 0, 0, 2, 2],
-    [1, 0, 0, 2, 2],
+    [1, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0],
     [1, 1, 0, 1, 1],
     [1, 1, 0, 1, 1],
     [1, 1, 0, 1, 1],
@@ -259,7 +259,7 @@ const FeaturedBus = () => {
                 <FaChair className="text-blue-400 text-3xl animate-pulse" />
                 <h3 className="text-xl font-semibold">Total Seats Available</h3>
               </div>
-              <p className="text-3xl font-bold">179</p>
+              <p className="text-3xl font-bold">175</p>
             </div>
           </div>
         </div>
@@ -883,15 +883,15 @@ const FeaturedBus = () => {
                                 <div className="mt-4 p-4 bg-white border border-gray-200 rounded-lg shadow-sm">
                                   <div className="flex justify-between text-gray-700">
                                     <p>Seat Fare:</p>
-                                    <p>৳ 690</p>
+                                    <p>৳ 0</p>
                                   </div>
                                   <div className="flex justify-between text-gray-700">
                                     <p>Total Seat:</p>
-                                    <p>4</p>
+                                    <p>0</p>
                                   </div>
                                   <div className="flex justify-between text-gray-700">
                                     <p>Total Charge:</p>
-                                    <p>৳ 2760</p>
+                                    <p>৳0</p>
                                   </div>
                                 </div>
                               </div>

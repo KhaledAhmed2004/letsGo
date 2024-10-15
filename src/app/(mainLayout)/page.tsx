@@ -11,11 +11,11 @@ const HomePage = async () => {
   return (
     <div>
       <HeroSection />
-      <TravioSpecilas />
-      <MordernBeautiful />
-      <MordenAndBeutiful />
       <PopularDestinations />
-      <AboutUs />
+      {/* <MordernBeautiful /> */}
+      <MordenAndBeutiful />
+      {/* <TravioSpecilas /> */}
+      {/* <AboutUs /> */}
       <Testimonial />
     </div>
   );

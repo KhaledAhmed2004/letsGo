@@ -1,48 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import img1 from "../../assets/images/Destinations/place-1.jpg";
-import img2 from "../../assets/images/Destinations/place-2.jpg";
-import img3 from "../../assets/images/Destinations/place-3.jpg";
-import img4 from "../../assets/images/Destinations/place-4.jpg";
-import img5 from "../../assets/images/Destinations/place-5.jpg";
+
 
 const destinations = [
   {
-    name: "New York City",
-    imgSrc: img1,
+    name: "Cox's Bazar",
+    imgSrc: "https://i.ibb.co.com/fXxWRDj/inani-beach-2496530-1280.jpg",
     width: 500,
     height: 300,
     link: "",
   },
   {
-    name: "Norway Lake",
-    imgSrc: img2,
+    name: "Sajek",
+    imgSrc: "https://i.ibb.co.com/yXfC3Ch/bangladesh-4690978-1280.jpg",
     width: 500,
     height: 300,
     link: "",
   },
   {
-    name: "Norway Lake",
-    imgSrc: img3,
+    name: "Sundarbans",
+    imgSrc: "https://i.ibb.co.com/Sd40dww/deer-3673017-1280.jpg",
     width: 500,
     height: 300,
     link: "",
   },
   {
-    name: "African Park",
-    imgSrc: img4,
+    name: "Saint Martin",
+    imgSrc: "https://i.ibb.co.com/fDrYwwV/242334800-373079517801973-4571447618954001339-n.jpg",
     width: 500,
     height: 300,
     link: "",
   },
-  {
-    name: "African Park",
-    imgSrc: img5,
-    width: 500,
-    height: 300,
-    link: "",
-  },
+
 ];
 
 const PopularDestinations = () => {
@@ -95,7 +85,7 @@ const PopularDestinations = () => {
           </div>
         ))}
         {/* All Destination Link */}
-        <div className="bg-white rounded-lg shadow-md flex items-center justify-center p-6 hover:shadow-xl transition-all duration-300">
+        {/* <div className="bg-white rounded-lg shadow-md flex items-center justify-center p-6 hover:shadow-xl transition-all duration-300">
           <div className="text-center">
             <h3 className="text-xl font-bold text-gray-800 mb-4">
               Find All Destinations
@@ -107,7 +97,7 @@ const PopularDestinations = () => {
               Find Now
             </Link>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* Decorative Background Element */}
