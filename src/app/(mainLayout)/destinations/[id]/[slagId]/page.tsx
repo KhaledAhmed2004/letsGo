@@ -26,7 +26,6 @@ const DestinationDetailsPage: React.FC<DestinationDetailsPageProps> = async ({
   params,
 }) => {
   const res = await fetch(
-    // `http://localhost:5000/api/destinations/${params?.id}/${params?.slagId}`
     `https://tour-gide-server.vercel.app/api/destinations/${params?.id}/${params?.slagId}`
   );
   const destination = await res.json();

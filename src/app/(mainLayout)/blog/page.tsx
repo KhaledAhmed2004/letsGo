@@ -15,7 +15,6 @@ interface BlogPost {
 
 // Define the TravelBlogPage component
 const TravelBlogPage: React.FC = async () => {
-  // const res = await fetch("http://localhost:5000/api/blog");
   const res = await fetch("https://tour-gide-server.vercel.app/api/blog");
   const blogPosts = await res.json();
 

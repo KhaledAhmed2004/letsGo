@@ -86,8 +86,8 @@ export async function middleware(request: NextRequest) {
 // Specify the routes that need to be protected
 export const config = {
   matcher: [
-    "/dashboard/:path*", // Match all subpaths of /dashboard
-    "/admin-dashboard/:path*", // Match all subpaths of /admin-dashboard
-    "/agent-dashboard/:path*", // Match all subpaths of /agent-dashboard
+    // "/dashboard/:path*", // Match all subpaths of /dashboard
+    // "/admin-dashboard/:path*", // Match all subpaths of /admin-dashboard
+    // "/agent-dashboard/:path*", // Match all subpaths of /agent-dashboard
   ],
 };

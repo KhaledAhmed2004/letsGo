@@ -38,11 +38,11 @@ const SignInPage: React.FC = () => {
     }
   };
 
-  const handleSocialSignIn = (provider: string) => {
-    // Handle social sign-in logic here
-    toast.success(`${provider} Sign In Successful!`);
-    router.push("/dashboard"); // Navigate to dashboard
-  };
+  // const handleSocialSignIn = (provider: string) => {
+  //   // Handle social sign-in logic here
+  //   toast.success(`${provider} Sign In Successful!`);
+  //   router.push("/dashboard"); // Navigate to dashboard
+  // };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -149,7 +149,7 @@ const SignInPage: React.FC = () => {
               </button>
               <button
                 type="button"
-                onClick={() => handleSocialSignIn("Facebook")}
+                // onClick={() => signIn("facebook", { callbackUrl: "/" })}
                 className="flex items-center justify-center w-full border-2 border-blue-800 text-blue-800 bg-transparent py-2 rounded-lg hover:bg-blue-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-700 transition duration-300 ease-in-out dark:text-blue-400 dark:border-blue-400 dark:hover:bg-blue-500 dark:hover:text-white"
               >
                 <FaFacebook className="mr-2" />
