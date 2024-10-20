@@ -77,6 +77,19 @@ const PostBlogPage: React.FC = () => {
             required
           />
         </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            BAN Info
+          </label>
+          <input
+            type="text"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+            placeholder="Format (Location,StartDate,EndDate)"
+            className="w-full border border-gray-300 rounded-lg p-2"
+            required
+          />
+        </div>
 
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">

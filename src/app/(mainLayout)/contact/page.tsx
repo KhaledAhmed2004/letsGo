@@ -18,7 +18,7 @@ const ContactUsPage = () => {
         <FaPhone className="text-5xl text-blue-500 group-hover:text-blue-700 transition-all duration-300 dark:text-blue-300 dark:group-hover:text-blue-500" />
       ),
       title: "Phone",
-      info: "+123 456 789",
+      info: "+88017358074444",
     },
     {
       icon: (

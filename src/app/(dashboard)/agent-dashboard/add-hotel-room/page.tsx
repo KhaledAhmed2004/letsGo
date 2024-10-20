@@ -126,7 +126,7 @@ const AddHotelRoom = () => {
           </div>
 
           {/* Amenities */}
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <label
               htmlFor="amenities"
               className="block text-sm font-medium text-gray-700"
@@ -142,7 +142,7 @@ const AddHotelRoom = () => {
               placeholder="Enter amenities (comma separated)"
               required
             />
-          </div>
+          </div> */}
 
           {/* Image Upload */}
           <div className="mb-4">

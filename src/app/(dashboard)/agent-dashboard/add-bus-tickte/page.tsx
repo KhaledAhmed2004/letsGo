@@ -311,7 +311,7 @@ const AddBusTicket = () => {
               htmlFor="name"
               className="block text-sm font-medium text-gray-700"
             >
-              Name
+              Bus name
             </label>
             <input
               type="text"

@@ -1190,23 +1190,50 @@ const roomTypes = [
 
 const App = () => {
   const rooms = [
-    // {
-    //   id: 1,
-    //   name: "Deluxe Room",
-    //   description: "Experience luxury at the Hilton Garden Inn, offering a spacious Deluxe Room with breathtaking views and top-notch amenities.",
-    //   price: 120,
-    //   image: "https://i.ibb.co.com/g9pqZkw/rahul-chakraborty-dv9-Ao-OYeg-Rc-unsplash.jpg",
-    //   type: "Deluxe",
-    //   hotelName: "Hilton Garden Inn",
-    // },
     {
       id: 2,
       name: "Standard Room",
-      description: "Enjoy a comfortable stay at Hotel The Cox's Today, featuring a cozy Standard Room perfect for short trips.",
+      description: "Enjoy a comfortable stay at Hotel The Cox's Today, featuring a cozy Standard Room perfect for short trips. We are welcoming you as our first priority.",
       price: 80,
       image: "https://i.ibb.co.com/3cpgxnM/hotel-the-cox-today.jpg",
       type: "Standard",
       hotelName: "Hotel The Cox's Today",
+    },
+    {
+      id: 4,
+      name: "Family Room",
+      description: "Enjoy a family-friendly experience at Dhaka International Hotel, featuring a spacious Family Room designed for comfort.",
+      price: 150,
+      image: "https://i.ibb.co.com/X360KCz/christopher-jolly-Gqb-U78bd-JFM-unsplash.jpg",
+      type: "Family",
+      hotelName: "Dhaka International Hotel",
+    },
+    {
+      id: 1,
+      name: "Deluxe Room",
+      description: "Experience luxury at the Hilton Garden Inn, offering a spacious Deluxe Room with breathtaking views and top-notch amenities. Explore Royality",
+      price: 120,
+      image: "https://i.ibb.co.com/g9pqZkw/rahul-chakraborty-dv9-Ao-OYeg-Rc-unsplash.jpg",
+      type: "Deluxe",
+      hotelName: "Hilton Garden Inn",
+    },
+    {
+      id: 5,
+      name: "Family Room",
+      description: "Best Western Plus offers a welcoming Family Room, ideal for a memorable family vacation, to ensure a comfortable and relaxing stay for everyone.",
+      price: 150,
+      image: "https://i.ibb.co.com/X360KCz/christopher-jolly-Gqb-U78bd-JFM-unsplash.jpg",
+      type: "Family",
+      hotelName: "Best Western Plus",
+    },
+    {
+      id: 6,
+      name: "Family Room",
+      description: "At Seagull Hotel, enjoy a comfortable Family Room for a relaxing family stay near the coast, complete with stunning views and easy access to local attractions.",
+      price: 150,
+      image: "https://i.ibb.co.com/fDXt7vx/seagull-hotel.jpg",
+      type: "Family",
+      hotelName: "Seagull Hotel",
     },
     {
       id: 3,
@@ -1217,34 +1244,8 @@ const App = () => {
       type: "Suite",
       hotelName: "Ocean Paradise Hotel & Restaurant",
     },
-    // {
-    //   id: 4,
-    //   name: "Family Room",
-    //   description: "Enjoy a family-friendly experience at Dhaka International Hotel, featuring a spacious Family Room designed for comfort.",
-    //   price: 150,
-    //   image: "https://i.ibb.co.com/X360KCz/christopher-jolly-Gqb-U78bd-JFM-unsplash.jpg",
-    //   type: "Family",
-    //   hotelName: "Dhaka International Hotel",
-    // },
-    // {
-    //   id: 5,
-    //   name: "Family Room",
-    //   description: "Best Western Plus offers a welcoming Family Room, ideal for a memorable family vacation.",
-    //   price: 150,
-    //   image: "https://i.ibb.co.com/X360KCz/christopher-jolly-Gqb-U78bd-JFM-unsplash.jpg",
-    //   type: "Family",
-    //   hotelName: "Best Western Plus",
-    // },
-    {
-      id: 6,
-      name: "Family Room",
-      description: "At Seagull Hotel, enjoy a comfortable Family Room for a relaxing family stay near the coast.",
-      price: 150,
-      image: "https://i.ibb.co.com/fDXt7vx/seagull-hotel.jpg",
-      type: "Family",
-      hotelName: "Seagull Hotel",
-    },
   ];
+  
   
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -1386,7 +1387,7 @@ const App = () => {
           </div>
 
           {/* Price Range Slider */}
-          {/* <div className="mt-4">
+          <div className="mt-4">
             <p className="text-sm text-gray-600 dark:text-gray-300 font-semibold mb-2">
               Price Range:{" "}
               <span className="font-bold">
@@ -1402,9 +1403,9 @@ const App = () => {
               }}
               className="w-full"
               min={0}
-              max={10000}
+              max={30000}
             />
-          </div> */}
+          </div>
 
           {/* Month Filter */}
           {/* <div className="mt-4">
@@ -1451,7 +1452,7 @@ const App = () => {
           </div> */}
 
           {/* Sorting Dropdown */}
-          {/* <div className="mt-6">
+          <div className="mt-6">
             <p className="text-sm text-gray-600 dark:text-gray-300 font-semibold mb-3">
               Sort By
             </p>
@@ -1463,7 +1464,7 @@ const App = () => {
               <Select.Option value="asc">Price: Low to High</Select.Option>
               <Select.Option value="desc">Price: High to Low</Select.Option>
             </Select>
-          </div> */}
+          </div>
         </div>
         {/* Product Listing Section */}
         <div className="w-full md:w-3/4 p-4">
@@ -1484,14 +1485,14 @@ const App = () => {
                   <h2 className="font-bold text-2xl text-gray-800 mb-2 dark:text-white">
                     {room.hotelName}
                   </h2>
-                  <p className="text-gray-600 text-base mb-4 dark:text-gray-400">
+                  <p className="text-gray-600 text-base mb-4 dark:text-white">
                     {room.description}
                   </p>
 
-                  <div className="mt-4">
+                  <div className="mt-4 h-5">
                     <Link
                       href={"hotel-booking/checkout/1"}
-                      className="mt-2 bg-blue-500 text-white p-2 rounded-lg font-medium"
+                      className="mt-2 bg-blue-500 text-white  p-2 rounded-lg font-medium"
                     >
                       Book Now
                     </Link>

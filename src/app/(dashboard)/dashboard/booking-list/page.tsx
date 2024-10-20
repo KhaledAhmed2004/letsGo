@@ -8,14 +8,16 @@ import {
   FaTimesCircle,
   FaHourglassHalf,
   FaCalendarAlt,
-  FaMoneyBillWave,
+  FaTicketAlt,
   FaStar,
 } from "react-icons/fa";
+import { LuPackageOpen } from "react-icons/lu";
+
 
 // Booking type interface
 interface Booking {
   id: number;
-  type: "Room" | "Package";
+  type: "Room" | "Bus Ticket";
   name: string;
   status: string;
   checkInDate: string;
@@ -36,8 +38,8 @@ const FeedbackModal: React.FC<{
     onClose();
     Swal.fire({
       icon: "success",
-      title: "Thank you for your feedback!",
-      text: "We appreciate your time and effort in providing feedback.",
+      title: "Your Order Cancelled Successfully",
+      text: "Thank you for Staying with us",
       confirmButtonColor: "#3085d6",
     });
   };
@@ -47,10 +49,10 @@ const FeedbackModal: React.FC<{
   return (
     <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 md:w-1/3 transform transition-all duration-300 scale-100 hover:scale-105">
-        <h2 className="text-2xl font-bold text-center mb-4 text-blue-600">
-          Thanks for staying with us
+        <h2 className="text-2xl font-bold text-center mb-4 text-red-500">
+          Are you Sure You Want to Cancel Your Order!!!
         </h2>
-        <h3 className="text-xl font-semibold text-center mb-2">
+        {/* <h3 className="text-xl font-semibold text-center mb-2">
           Submit Your Feedback
         </h3>
         <h4 className="text-lg font-medium text-center mb-4">Rate Us:</h4>
@@ -71,7 +73,7 @@ const FeedbackModal: React.FC<{
           placeholder="Write your feedback here..."
           value={feedback}
           onChange={(e) => setFeedback(e.target.value)}
-        />
+        /> */}
         <div className="flex justify-end">
           <button
             onClick={onClose}
@@ -81,9 +83,9 @@ const FeedbackModal: React.FC<{
           </button>
           <button
             onClick={handleSubmit}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-200"
+            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-blue-600 transition-colors duration-200"
           >
-            Submit
+            OK
           </button>
         </div>
       </div>
@@ -104,31 +106,40 @@ const BookingListPage: React.FC = () => {
       try {
         const mockBookings: Booking[] = [
           {
+            id: 4,
+            type: "Package",
+            name: "Sajek",
+            status: "Cancelled",
+            checkInDate: "2024-10-17",
+            checkOutDate: "2024-10-18",
+            amount: 10000,
+          },
+          {
             id: 1,
             type: "Room",
-            name: "Deluxe Room",
-            status: "Confirmed",
-            checkInDate: "2024-10-10",
-            checkOutDate: "2024-10-15",
-            amount: 500,
+            name: "Single",
+            status: "Done",
+            checkInDate: "2024-10-16",
+            checkOutDate: "2024-10-17",
+            amount: 15999,
           },
           {
             id: 2,
-            type: "Package",
-            name: "Spa Package",
-            status: "Pending",
-            checkInDate: "2024-10-12",
-            checkOutDate: "2024-10-14",
-            amount: 200,
+            type: "Bus Ticket",
+            name: "C3,C4,D3,D4",
+            status: "Done",
+            checkInDate: "2024-10-16",
+            checkOutDate: "2024-10-16",
+            amount: 2760,
           },
           {
             id: 3,
             type: "Room",
-            name: "Standard Room",
-            status: "Cancelled",
-            checkInDate: "2024-10-05",
-            checkOutDate: "2024-10-10",
-            amount: 300,
+            name: "Double Room",
+            status: "Pending",
+            checkInDate: "2024-10-16",
+            checkOutDate: "2024-10-18",
+            amount: 21900,
           },
         ];
         setBookings(mockBookings);
@@ -157,6 +168,8 @@ const BookingListPage: React.FC = () => {
     switch (status) {
       case "Confirmed":
         return <FaCheckCircle className="text-green-500" />;
+      case "Done":
+        return <FaCheckCircle className="text-green-500" />;
       case "Pending":
         return <FaHourglassHalf className="text-yellow-500" />;
       case "Cancelled":
@@ -169,9 +182,13 @@ const BookingListPage: React.FC = () => {
   const getTypeIcon = (type: string) => {
     return type === "Room" ? (
       <FaBed className="text-blue-500" />
-    ) : (
-      <FaSpa className="text-pink-500" />
-    );
+    ) : type =="Package"?
+    (
+      <LuPackageOpen className="text-blue-500" />
+    ):
+    (
+      <FaTicketAlt className="text-pink-500" />      
+    )
   };
 
   if (loading) {
@@ -231,18 +248,42 @@ const BookingListPage: React.FC = () => {
                   {booking.checkOutDate}
                 </td>
                 <td className="py-4 px-6">
-                  <FaMoneyBillWave className="inline-block mr-1 text-green-400" />
-                  ${booking.amount}
+                  {/* <FaMoneyBillWave className="inline-block mr-1 text-green-400" /> */}
+                  ৳{booking.amount}
                 </td>
                 <td className="py-4 px-6">
-                  {booking.status === "Confirmed" && (
+                {booking.status === "Confirmed" ? (
+                  <button
+                  onClick={() => handleFeedbackClick(booking)}
+                    className="bg-red-500 text-white px-4 py-2 w-32 rounded hover:bg-red-600 transition duration-200"
+                  >
+                    Cancel
+                  </button>
+                ) : booking.status === "Done" ? (
+                  <button
+                    onClick={() => handleFeedbackClick(booking)}
+                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200"
+                  >
+                    Give Feedback
+                  </button>
+                  ) : booking.status === "Cancelled" ? (
                     <button
                       onClick={() => handleFeedbackClick(booking)}
-                      className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200"
+                      className="bg-red-500 w-32 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200"
                     >
-                      Give Feedback
-                    </button>
-                  )}
+                      Cancelled
+                  </button>
+                ) : (
+                  <button
+                    // onClick={() => handlePaymentClick(booking)}
+                    className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-200"
+                  >
+                    Make Payment
+                  </button>
+                )}
+
+
+
                 </td>
               </tr>
             ))}

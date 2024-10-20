@@ -89,6 +89,14 @@ const Footer = () => {
               </li>
               <li>
                 <Link
+                  href="/contact"
+                  className="hover:text-teal-500 transition"
+                >
+                  Sign Up as Agent
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/privacy"
                   className="hover:text-teal-500 transition"
                 >

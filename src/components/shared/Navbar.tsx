@@ -387,7 +387,7 @@ const Navbar = () => {
           <Link
             href="/hotel-booking"
             className={`${
-              isActive("/hotel-booking")
+              isActive("/bus-booking")
                 ? "bg-blue-600 dark:bg-gray-700 text-white px-4 py-2 rounded-md font-bold"
                 : "text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-gray-100"
             }`}
@@ -402,7 +402,7 @@ const Navbar = () => {
                 : "text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-gray-100"
             }`}
           >
-            Bus Ticket
+           
             Bus Ticket
           </Link>
           <Link
@@ -419,10 +419,12 @@ const Navbar = () => {
           <Link
             href={getDashboardLink()}
             className={`${
-              isActive(getDashboardLink())
+              isActive("/blog")
                 ? "bg-blue-600 dark:bg-gray-700 text-white px-4 py-2 rounded-md font-bold"
                 : "text-gray-800 dark:text-gray-300 hover:text-blue-600 dark:hover:text-gray-100"
             }`}
+                
+           
           >
             Dashboard
           </Link>

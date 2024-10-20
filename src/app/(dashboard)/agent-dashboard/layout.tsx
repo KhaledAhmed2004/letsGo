@@ -138,8 +138,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [user, setUser] = useState({
-    name: "Khaled Ahmed",
-    image: "https://i.ibb.co/bFMCnfT/me.png",
+    name: "Ocean Paradise Hotel & Restaurant",
+    image: "https://i.ibb.co.com/dGCKwXr/Ocean-Paradise.jpg",
   });
   const sidebarRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname(); // Get current pathname
@@ -276,3 +276,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default DashboardLayout;
+
+
+
